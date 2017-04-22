@@ -34,12 +34,15 @@
   * Cons: Done already? Not worthy of a paper?
 * Analysis of https://bugs.chromium.org/p/chromium/issues/detail?id=683314 (URL Unicode Issue)
   * Cons: Not worthy of a paper?
-* Analysis of https://bugs.chromium.org/p/chromium/issues/detail?id=683314 (URL Unicode Issue)
-  * Cons: Not worthy of a paper?
-* Analysis of Android Malware Detection 
+* Analysis of Android Malware Detection
   * Cons: Too easy
-  * subtopics: Analysis of common Android Malware/ How Android Malware affects phone/How to detect it traditionaly/ How to detect it in Machine Learning/ Maybe implement a dectection framework / 
-  * Evaluate: Maybe analyze how many percantage for different kinds of Malware / how to hide from the detection, feasible solution / analyze the accuracy if we implement a detection method 
+  * subtopics: Analysis of common Android Malware/ How Android Malware affects phone/How to detect it traditionaly/ How to detect it in Machine Learning/ Maybe implement a dectection framework /
+  * Evaluate: Maybe analyze how many percantage for different kinds of Malware / how to hide from the detection, feasible solution / analyze the accuracy if we implement a detection method
   * related paper ( These papers are just a possible way to analyze different kinds of Malware in different ways): Energy Attacks on Mobile Devices https://arxiv.org/pdf/1704.04464.pdf, Semi-supervised Classification for Dynamic
 Android Malware Detection https://arxiv.org/pdf/1704.05948.pdf, A Machine Learning Approach to Android Malware
 Detection http://www.utdallas.edu/~lkhan/papers/06298824.pdf, Detecting Android Malware by Analyzing Manifest Files https://apan.net/meetings/apan36/Session/NRW/[S2-1]APAN_NRW2013.pdf
+* Analysis of database intrusion detection
+  * Cons: Done already? Maybe focus on specific database intrusion detection system?
+  * Related research: [Approaches and Challenges in Database Intrusion Detection](https://pdfs.semanticscholar.org/2eb4/e0dccae7de1b348f0795fb7d15c185a344ba.pdf)
+* Analysis of vulnerabilities in typical NoSQL database (MongoDB, CouchBase, etc)
+  * Cons: Could be too broad.
