@@ -32,7 +32,7 @@
   * Comments: looks good - Chen
 * Detect when users use similar passwords and warn them (without storing passwords)
   * Cons: Is this technically feasible? Does this make the user more secure?
-  * Comments: Too lazy to use different password. Maybe something like password generator based on the same info - Chen
+  * Comments: Too lazy to use different password. Maybe something like password generator based on the same info - Chen
 * Security Analysis of Common Wireless Networking Implementations
   * Cons: Too technical for us? Do we have the knowledge to evaluate this?
   * Comments: Hard to evaluate ( I don't know anything about network ) - Chen
