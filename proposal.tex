@@ -52,9 +52,13 @@ Domain name were designed to support ASCII character. Internationalized domain n
       - Maybe domain providers should not allow IDNs close to real names?
       - Whitelist/blacklist
 
+In terms of URL variations, We will mainly focus our research on Top 500 Alexa websites, replacing the domain name with all possible variations. By checking the status code of return pages, we can classify the websites into different categories: page not found(404), redirection to legitimate url, malicious variations and unrelated variations. We will evaluate the impact of this vulnerability based on the percentage of malicious variations of the websites and potential impact based on the percentage of pages with 404. On the other hand, browser plays an important role in defending against IDN homograph attack. In this project, the exposure to this vulnerability of different versions of the major browsers will be studied. We will discuss about the solutions given by these companies and how effective those solutions are along with some screenshots of them before and after the CVE is disclosed. In addition, we will also take a look at some other policies, for example, whitelist and blacklist, and analyze the possible disadvantages.
+
 - Conclusion
   - Impact of the vulnerability based on empirical data and % of users still vulnerable
   - Possible solution for this vulnerability. How does company solve this problem.
+
+At the end of this project, we will have an evaluation of the current impact of the vulnerability based on the empirical data so that we can have an idea of the potential impact and the percentage of users involved.
 
 \section{Why}
 - Relatively new CVE discovered because this (https://bugs.chromium.org/p/chromium/issues/detail?id=683314)
@@ -62,12 +66,14 @@ Domain name were designed to support ASCII character. Internationalized domain n
 - Hard for regular users to distinguish between real/fake sites
 - Easy to collect data to evaluate impact
 
+This CVE was recently disclosed and few relevant researches have been done. It's interesting to find how internationalized domain name which was designed to be beneficial is utilized by malicious user and turn against regular users' back. It's also fairly difficult for regular users to distinguish between legitimate websites and the variant ones so we are hoping to find out how browser protect regular users from this vulnerability after its disclosure. Moreover, the impact of this CVE can be evaluated statistically and it is easy to collect data.
+
 \section{Potential Issues}
 - The potential impact, it may be actually really low
 - If we will find not legitimate sites by substitution (sample size may be low)
 - If there are a lot of illegitime sites, we would need to check manually if they are just a redirect or a scam, maybe we will need to find an automatic way
 
-
+There are some potential issues and limitations on this project. The potential or the real impact could be actually negligible. Since we are only collecting data from top 500 Alexa websites which makes the sample size so small that we may find very few legitimate sites by substitution. Additionally, we would need to check manually the categories the illegitimate websites belongs to till we find a way to automatize the process. 
 
 \section{Resources}
 Resources
