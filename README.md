@@ -1,17 +1,25 @@
-# ⅠntеrnɑtᎥοnɑlᎥzеd DoⅿɑᎥn Nɑⅿе Нοⅿoɡrɑрh Αttɑсkѕ
+# Іntеrnɑtⅰonɑlⅰzеⅾ Dоmɑⅰn Nɑmе Hоmоɡrɑρh Attɑсκѕ
 ## CSE 227: Computer Security
 ### University of California San Diego
 #### Spring 2017
-
-### Contents
-* [Proposal](proposal.pdf)
-* [Paper](paper.pdf)
-* [Presentation](presentation.pdf)
 
 ### Authors
 * [Chen Lai](https://github.com/claigit)
 * [Zhongrong Jian](https://github.com/miaolegewang)
 * [J. Sidrach](https://github.com/jsidrach)
 
-### Generate PDFs
-* Run ```make``` inside the project's root folder
+### Contents
+* Documents
+  * [Proposal](doc/proposal.pdf)
+  * [Paper](doc/paper.pdf)
+  * [Presentation](doc/presentation.pdf)
+* Data
+  * Homoglyphs: [Markdown](data/homoglyphs.md), [CSV](data/homoglyphs.csv)
+  * Domains: [Markdown](data/domains.md), [CSV](data/domains.csv)
+  * TODO: Data output from code
+* Source Code
+  * TODO: Source code that reads and writes to data folder
+
+### Commands
+* Generate PDFs: run ```make docs``` inside the project's root folder
+* TODO: Instructions to generate different parts of the code, generate graphics
