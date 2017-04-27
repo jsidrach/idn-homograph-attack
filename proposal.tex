@@ -31,10 +31,13 @@ University of California San Diego
 \maketitle
 
 \section{What}
+
 - Explain the attack
   - When/how were IDN introduced
   - Homograph letters
   - How to use this to the attackers advantage
+
+Domain name were designed to support ASCII character. Internationalized domain name(IDN) was proposed in December 1996 by Martin Dürst for the purpose of letting non-English speaking people use Internet without restriction[1]. The solution is to implement unicode mapping every character in different language to a unique number. Homograph letters, however, could be a potential vulnerability. For example, Cyrillic letter 'a' can look identical to Latin letter 'a'. Attackers can use the website "www.apple.com" where 'a' actually is a Cyrillic letter to attack users. In some other language, like Chinese, there exists many homographs between traditional Chinese and simplified Chinese.
 
 - Research
   - On websites
@@ -51,6 +54,7 @@ University of California San Diego
 
 - Conclusion
   - Impact of the vulnerability based on empirical data and % of users still vulnerable
+  - Possible solution for this vulnerability. How does company solve this problem.
 
 \section{Why}
 - Relatively new CVE discovered because this (https://bugs.chromium.org/p/chromium/issues/detail?id=683314)
@@ -62,6 +66,8 @@ University of California San Diego
 - The potential impact, it may be actually really low
 - If we will find not legitimate sites by substitution (sample size may be low)
 - If there are a lot of illegitime sites, we would need to check manually if they are just a redirect or a scam, maybe we will need to find an automatic way
+
+
 
 \section{Resources}
 Resources
