@@ -1,4 +1,4 @@
-# ⅠntеrnɑtᎥοnɑlᎥzеd DoⅿɑᎥn Nɑⅿе Нοⅿoɡrɑрh ɑttɑсkѕ
+# ⅠntеrnɑtᎥοnɑlᎥzеd DoⅿɑᎥn Nɑⅿе Нοⅿoɡrɑрh Αttɑсkѕ
 ## CSE 227: Computer Security
 ### University of California San Diego
 #### Spring 2017
