@@ -35,11 +35,7 @@ out/:
 out/$(PROPOSAL).aux: $(TEX_FILES) $(IMG_FILES) | out/
 	xelatex $(PDFLATEX_FLAGS) $(PROPOSAL)
 
-out/$(PROPOSAL).bbl: $(BIB_FILES) | out/$(PROPOSAL).aux
-	bibtex out/$(PROPOSAL)
-	xelatex $(PDFLATEX_FLAGS) $(PROPOSAL)
-
-out/$(PROPOSAL).pdf: out/$(PROPOSAL).aux $(if $(BIB_FILES), out/$(PROPOSAL).bbl)
+out/$(PROPOSAL).pdf: out/$(PROPOSAL).aux
 	xelatex $(PDFLATEX_FLAGS) $(PROPOSAL)
 	mv out/$(PROPOSAL).pdf $(PROPOSAL).pdf
 
