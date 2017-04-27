@@ -10,9 +10,9 @@
 
 ### Contents
 * Documents
-  * [Proposal](doc/proposal.pdf)
-  * [Paper](doc/paper.pdf)
-  * [Presentation](doc/presentation.pdf)
+  * [Proposal](docs/proposal.pdf)
+  * [Paper](docs/paper.pdf)
+  * [Presentation](docs/presentation.pdf)
 * Data
   * Homoglyphs: [Markdown](data/homoglyphs.md), [CSV](data/homoglyphs.csv)
   * Domains: [Markdown](data/domains.md), [CSV](data/domains.csv)
