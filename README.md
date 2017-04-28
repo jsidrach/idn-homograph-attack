@@ -14,8 +14,8 @@
   * [Paper](docs/paper.pdf)
   * [Presentation](docs/presentation.pdf)
 * Data
-  * Homoglyphs: [Markdown](data/homoglyphs.md), [CSV](data/homoglyphs.csv)
-  * Domains: [Markdown](data/domains.md), [CSV](data/domains.csv)
+  * Confusable Homoglyphs: [text](data/confusables.txt)
+  * Domains: [CSV](data/domains.csv)
   * TODO: Data output from code
 * Source Code
   * TODO: Source code that reads and writes to data folder
@@ -23,3 +23,7 @@
 ### Commands
 * Generate PDFs: run ```make docs``` inside the project's root folder
 * TODO: Instructions to generate different parts of the code, generate graphics
+
+### References
+* [Unicode Confusable Detection](http://www.unicode.org/reports/tr39/#Confusable_Detection)
+* [Unicode Confusables Library](https://github.com/mtibben/confusables)
