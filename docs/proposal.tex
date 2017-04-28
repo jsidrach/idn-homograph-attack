@@ -32,7 +32,7 @@ University of California San Diego
 \section{What}
 
 Domain names were originally designed to support only ASCII characters.
-Internationalized Domain Names (IDN) were proposed back in December 1996 by Martin Dürst for the purpose of letting non-English speaking people use Internet without  additional restriction.
+Internationalized Domain Name (IDN) was proposed back in December 1996 by Martin Dürst for the purpose of letting non-English speaking people use Internet without  additional restrictions.
 This extension involves representing Unicode characters in ASCII using Punycode, so that they could be then rendered back into their Unicode representation.
 Homograph letters (different letters whose representation is almost, if not, the same), however, present a potential vulnerability.
 For example, Cyrillic letter 'a' can look identical to Latin letter 'a' depending on the font.
@@ -47,14 +47,14 @@ We will evaluate the impact of this vulnerability based on the relative percenta
 
 On the other hand, browsers also play an important role in defending against IDN homograph attacks.
 In this project, the exposure to this vulnerability of different versions of the major browsers will be studied.
-We will discuss the solutions given by these browsers and their effectiveness, along with some screenshots of the browser's navigation bar before and after related CVEs were disclosed.
-Finally, we will also explore alternative policies, for instance, white/black lists and unconditional rendering, to analyze the possible advantages and drawbacks of each one.
+We will discuss the solutions implemented by these browsers and their effectiveness, along with some screenshots of the browsers' navigation bar before and after related CVEs were disclosed.
+Finally, we will also explore alternative policies, as white/black lists and unconditional rendering, and analyze the possible advantages and drawbacks of each one.
 
 At the end of this project, we will have a statistical evaluation of the current impact of this kind of vulnerability based on the empirical data, so that we can have an idea of the potential impact and the percentage of users at risk.
 
 \section{Potential Issues}
 Since we are only collecting data from the Top 500 Alexa websites, the sample size may be too small to find enough illegitimate domain names by just substituting characters by visually equivalent Unicode homoglyphs.
-Second, we will need to manually check and classify the illegitimate websites.
+Second, we may need to manually check and classify the illegitimate websites.
 This could be a significant time investment if the amount of registered domain names we find by character substitution is high, unless we find a suitable solution to automate the process.
 
 \section{Resources}
