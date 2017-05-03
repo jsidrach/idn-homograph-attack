@@ -1,3 +1,6 @@
+## Huge data files
+data/com-zone-20170501.gz
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
