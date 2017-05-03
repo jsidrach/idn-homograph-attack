@@ -16,15 +16,15 @@
 * Data
   * [Confusable Homoglyphs](data/confusables.txt)
   * Domains
+    * [Number of domains studied, date of data screenshots](data/filtered-domains.txt)
     * [Alexa Top 1m Websites](data/alexa-top-1m-20170501.gz)
-    * [Alexa Top .com Websites - excluding IDNs](data/alexa-top-not-idn-20170501.gz)
-    * [.com Zone IDNs](data/com-zone-idn-20170501.gz)
-    * [.com Zone IDNs Name Servers](data/com-zone-ns-idn-20170501.gz)
-    * [Number of domains studied](data/filtered-domains.txt)
+      * [Alexa Top .com Websites - excluding IDNs](data/alexa-top-not-idn-20170501.gz)
+    * [.com zone IDNs Name Servers](data/com-zone-ns-idn-20170501.gz)
+      * [.com zone IDNs](data/com-zone-idn-20170501.gz)
   * TODO: Data output from clustering
 * Source Code
   * [Initial raw data filtering](src/filter-domains.sh)
-  * [Homograph detection library](src/homographs.go)
+  * [Homographs detection library](src/homographs.go)
     * [Homoglyphs dictionary generator](src/generate_confusables.go)
     * [Homoglyphs dictionary](src/confusables_map.go)
   * TODO: Source code to cluster domains
