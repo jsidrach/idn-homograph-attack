@@ -30,7 +30,7 @@ const (
 	// Output package name
 	PackageName = "homographs"
 	// Generated output file
-	OutputFile = "confusables_map.go"
+	OutputFile = "homographs/confusables_map.go"
 )
 
 const (

@@ -1,7 +1,15 @@
-# TODO: Phony, all, document commands, domain grouping code
+# Targets:
+#    confusables : generates confusables map
+#    filter      : filters raw data
+#    cluster     : clusters homograph IDNs
 
-confusables: generate_confusables.go ../data/confusables.txt
-	go run generate_confusables.go
+all: confusables filter cluster
 
-filter-domains: filter-domains.sh
-	./filter-domains.sh
+confusables: homographs/generate_confusables.go ../data/confusables.txt
+	go run homographs/generate_confusables.go
+
+filter: filter_domains.sh
+	./filter_domains.sh
+
+cluster: cluster_homographs.go ../data/com-zone-idn-20170501.gz ../data/com-alexa-top-not-idn-20170501.gz
+	go run cluster_homographs.go > ../data/clustered-idns-20170501.txt

@@ -1,8 +1,11 @@
 # Targets:
-#    docs    : generates documents
-#    TODO    : Rules for code, graphs
+#    docs     : generates documents
+#    clusters : generates the filtered and clustered data
 
-.PHONY: docs
+.PHONY: docs cluster
 
 docs:
 	cd docs && $(MAKE) all
+
+clusters:
+	cd src && $(MAKE) all

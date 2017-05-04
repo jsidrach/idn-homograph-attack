@@ -21,17 +21,20 @@
       * [Alexa Top .com Websites - excluding IDNs](data/alexa-top-not-idn-20170501.gz)
     * [.com zone IDNs Name Servers](data/com-zone-ns-idn-20170501.gz)
       * [.com zone IDNs](data/com-zone-idn-20170501.gz)
-  * TODO: Data output from clustering
+  * [IDN clusters](data/clustered-idns-20170501.txt)
+  * TODO: CSV with manually verified data
 * Source Code
-  * [Initial raw data filtering](src/filter-domains.sh)
-  * [Homographs detection library](src/homographs.go)
-    * [Homoglyphs dictionary generator](src/generate_confusables.go)
-    * [Homoglyphs dictionary](src/confusables_map.go)
-  * TODO: Source code to cluster domains
+  * [Initial raw data filtering](src/filter_domains.sh)
+  * [Homographs detection library](src/homographs/homographs.go)
+    * [Homoglyphs dictionary generator](src/homographs/generate_confusables.go)
+    * [Homoglyphs dictionary](src/homographs/confusables_map.go)
+  * [Clustering of homograph IDNs](src/cluster_homographs.go)
+  * TODO: Source code to generate graphs
 
 ### Commands
 * Generate PDFs: run ```make docs``` inside the project's root folder
-* TODO: Instructions to run code, filter data, generate graphics, etc.
+* Process data: run ```make cluster``` (**Note**: add first the [src/](src/) directory to golang's ```$GOPATH```)
+* TODO: Instructions to generate graphics, etc.
 
 ### Acknowledgements
 * [Louis DeKoven](http://ldekoven.com) and [Stefan Savage](https://cseweb.ucsd.edu/~savage/)  and for their help and guidance
