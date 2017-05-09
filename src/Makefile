@@ -2,7 +2,7 @@
 #    confusables : generates confusables map
 #    filter      : filters raw data
 #    cluster     : clusters homograph IDNs
-#    whois       : fills homograph IDNs WHOIS information
+#    whois       : retrieves homograph IDNs WHOIS information
 
 all: confusables filter cluster
 
