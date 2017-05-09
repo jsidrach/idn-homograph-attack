@@ -21,7 +21,8 @@
       * [Alexa Top .com Websites - excluding IDNs](data/alexa-top-not-idn-20170501.gz)
     * [.com zone IDNs Name Servers](data/com-zone-ns-idn-20170501.gz)
       * [.com zone IDNs](data/com-zone-idn-20170501.gz)
-  * [IDN clusters](data/clustered-idns-20170501.txt)
+  * [IDN clusters](data/clustered-idns-20170501.csv)
+    * [IDN clusters statistics](data/stats-clustered-domains.csv)
   * TODO: CSV with manually verified data
 * Source Code
   * [Initial raw data filtering](src/filter_domains.sh)
@@ -32,6 +33,7 @@
   * TODO: Source code to generate graphs
 
 ### Commands
+* TODO: Redo section, include requirements: golang, whois, etc.
 * Generate PDFs: run ```make docs``` inside the project's root folder
 * Process data: run ```make cluster``` (**Note**: add first the [src/](src/) directory to golang's ```$GOPATH```)
 * TODO: Instructions to generate graphics, etc.

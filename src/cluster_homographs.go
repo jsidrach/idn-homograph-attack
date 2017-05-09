@@ -118,12 +118,13 @@ func processIDNRecord(l string, c *clusters) {
 
 // Prints the domains clustered by their canonical domain names
 func (c *clusters) Print() {
-	fmt.Printf("Number of canonical domain names: %d\n", c.nC)
-	fmt.Printf("Number of canonical domains with IDN homographs: %d\n", c.nCWithIDN)
-	fmt.Printf("Number of canonical domains without IDN homographs: %d\n", c.nC-c.nCWithIDN)
-	fmt.Printf("Number of IDNs: %d\n", c.nIDNs)
-	fmt.Printf("Number of IDNs with canonical counterpart: %d\n", c.nIDNsWithC)
-	fmt.Printf("Number of IDNs without canonical counterpart: %d\n\n", c.nIDNs-c.nIDNsWithC)
+	fmt.Fprintf(os.Stderr, "Number of canonical domain names: %d\n", c.nC)
+	fmt.Fprintf(os.Stderr, "Number of canonical domains with IDN homographs: %d\n", c.nCWithIDN)
+	fmt.Fprintf(os.Stderr, "Number of canonical domains without IDN homographs: %d\n", c.nC-c.nCWithIDN)
+	fmt.Fprintf(os.Stderr, "Number of IDNs: %d\n", c.nIDNs)
+	fmt.Fprintf(os.Stderr, "Number of IDNs with canonical counterpart: %d\n", c.nIDNsWithC)
+	fmt.Fprintf(os.Stderr, "Number of IDNs without canonical counterpart: %d\n\n", c.nIDNs-c.nIDNsWithC)
+	fmt.Fprint(os.Stderr, "Clusters:\n")
 	for _, k := range c.canonicals {
 		d := c.cluster[k]
 		if len(d.idns) > 0 {
@@ -134,13 +135,14 @@ func (c *clusters) Print() {
 
 // Prints a domain name with all its associated homograph IDNs
 func (d *domain) Format(canonical string) string {
-	s := fmt.Sprintf("%d,%s,%d\n", d.rank, canonical, len(d.idns))
+	fmt.Fprintf(os.Stderr, "%s - %d IDN homographs\n", canonical, len(d.idns))
+	s := ""
 	for _, idn := range d.idns {
 		ascii, err := idna.ToASCII(idn)
 		if err != nil {
 			log.Fatal(err)
 		}
-		s += fmt.Sprintf("%s,%s\n", idn, ascii)
+		s += fmt.Sprintf("%d,%s,%s,%s\n", d.rank, canonical, idn, ascii)
 	}
-	return s + "\n"
+	return s
 }

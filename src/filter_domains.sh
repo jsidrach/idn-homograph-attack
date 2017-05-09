@@ -27,8 +27,8 @@ zgrep "^[[:digit:]]*,[a-zA-Z0-9-]*\.com$" "../data/alexa-top-1m-20170501.gz" \
   | sort -t "," -k 1n,1n \
   | gzip --best > "../data/com-alexa-top-not-idn-20170501.gz"
 
-echo -e "Date of data screenshot: 2017-05-01" > "../data/filtered-domains.txt"
+echo -e "Date of data screenshot: 2017-05-01" > "../data/stats-filtered-domains.txt"
 NumDomains=`zcat "../data/com-alexa-top-not-idn-20170501.gz" | wc -l`
-echo -e "Number of top unique .com non-IDNs:" $NumDomains >> "../data/filtered-domains.txt"
+echo -e "Number of top unique .com non-IDNs:" $NumDomains >> "../data/stats-filtered-domains.txt"
 NumIDNs=`zcat "../data/com-zone-idn-20170501.gz" | wc -l`
-echo -e "Number of unique .com IDNs:" $NumIDNs >> "../data/filtered-domains.txt"
+echo -e "Number of unique .com IDNs:" $NumIDNs >> "../data/stats-filtered-domains.txt"
