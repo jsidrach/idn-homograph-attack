@@ -7,9 +7,10 @@ if [ ! -f "../data/clustered-idns-20170501.csv" ]; then
   exit 1
 fi
 
-# Print Header
+# CSV Header
 printf "Rank\tDomain (Canonical)\tDomain (Unicode)\tDomain (Punycode)\tRegistrant Organization\tRegistrant Email\tCreation Date\tUpdated Date\n"
 
+# One row per domain
 while IFS="," read rank domain unicode punycode; do
     info="$(whois $punycode.com 2>&1)"
     org="$(echo "$info" | grep -e "^Registrant Organization: " | cut -d " " -f 3-)"
