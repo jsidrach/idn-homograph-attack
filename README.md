@@ -14,16 +14,17 @@
   * [Paper](docs/paper.pdf)
   * [Presentation](docs/presentation.pdf)
 * Data
-  * [Confusable Homoglyphs](data/confusables.txt)
+  * [Confusable homoglyphs](data/confusables.txt)
   * Domains
     * [Number of domains studied, date of data screenshots](data/filtered-domains.txt)
-    * [Alexa Top 1m Websites](data/alexa-top-1m-20170501.gz)
-      * [Alexa Top .com Websites - excluding IDNs](data/alexa-top-not-idn-20170501.gz)
+    * [Alexa top 1m websites](data/alexa-top-1m-20170501.gz)
+      * [Alexa top .com websites - excluding IDNs](data/alexa-top-not-idn-20170501.gz)
     * [.com zone IDNs Name Servers](data/com-zone-ns-idn-20170501.gz)
       * [.com zone IDNs](data/com-zone-idn-20170501.gz)
   * [IDN clusters](data/clustered-idns-20170501.csv)
     * [IDN clusters statistics](data/stats-clustered-domains.csv)
-  * TODO: CSV with manually verified data
+  * [Manually classified homograph IDNs](data/manually-classified-idns-20170501.csv)
+    * [Manually classified homograph IDNs statistics](data/stats-classified-domains.txt)
 * Source Code
   * [Initial raw data filtering](src/filter_domains.sh)
   * [Homographs detection library](src/homographs/homographs.go)

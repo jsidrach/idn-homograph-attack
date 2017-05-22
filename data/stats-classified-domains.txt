@@ -1,0 +1,10 @@
+Status                               Number  Percentage
+-------------------------------------------------------
+Canonical - Parking                  64      6.04%
+Canonical - Redirect                 24      2.27%
+Third Party - Redirect to Canonical  39      3.68%
+Third Party - Unrelated              29      2.74%
+Third Party - Parking                872     82.34%
+Third Party - Scam                   31      2.93%
+
+Total Number of Domains: 1059
