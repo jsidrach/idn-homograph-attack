@@ -12,7 +12,6 @@
 * Documents
   * [Proposal](docs/proposal.pdf)
   * [Paper](docs/paper.pdf)
-  * [Presentation](docs/presentation.pdf)
 * Data
   * [Confusable homoglyphs](data/confusables.txt)
   * Domains
