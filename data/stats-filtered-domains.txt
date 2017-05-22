@@ -1,3 +1,3 @@
-Date of data screenshot: 2017-05-01
+Date of data snapshots: 2017-05-01
 Number of top unique .com non-IDNs: 458731
 Number of unique .com IDNs: 1045400

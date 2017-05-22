@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Important: requires .com zone screenshot by Verisign, called com-zone-20170501.gz
+# Important: requires .com zone snapshot by Verisign, called com-zone-20170501.gz
 if [ ! -f "../data/com-zone-20170501.gz" ]; then
   echo "Required file ../data/com-zone-20170501.gz not found"
   exit 1
@@ -27,7 +27,7 @@ zgrep "^[[:digit:]]*,[a-zA-Z0-9-]*\.com$" "../data/alexa-top-1m-20170501.gz" \
   | sort -t "," -k 1n,1n \
   | gzip --best > "../data/com-alexa-top-not-idn-20170501.gz"
 
-echo -e "Date of data screenshot: 2017-05-01" > "../data/stats-filtered-domains.txt"
+echo -e "Date of data snapshots: 2017-05-01" > "../data/stats-filtered-domains.txt"
 NumDomains=`zcat "../data/com-alexa-top-not-idn-20170501.gz" | wc -l`
 echo -e "Number of top unique .com non-IDNs:" $NumDomains >> "../data/stats-filtered-domains.txt"
 NumIDNs=`zcat "../data/com-zone-idn-20170501.gz" | wc -l`

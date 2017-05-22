@@ -1,16 +1,6 @@
 // Clusters the domain names according to their non-IDN homograph
-// Format of the file:
-// Number of canonical domain names:
-// Number of canonical domains with IDN homographs:
-// Number of canonical domains without IDN homographs:
-// Number of IDNs:
-// Number of IDNs with canonical counterpart:
-// Number of IDNs without canonical counterpart:
-//
-// Rank,Canonical,#IDN Homographs
-// Unicode,Punycode
-//
-// ...
+// Format of the standard output:
+// Rank,Canonical,Unicode,Punycode
 
 package main
 
