@@ -20,4 +20,4 @@ whois: whois_homographs.sh ../data/clustered-idns-20170501.csv
 	./whois_homographs.sh > ../data/clustered-idns-whois-20170501.csv
 
 registrants: cluster_registrants.py ../data/manually-classified-idns-20170501.csv
-	./cluster_registrants.py > ../data/clustered-homograph-registrants-20170501.csv
+	./cluster_registrants.py > ../data/clustered-homograph-registrants-20170501.txt

@@ -22,6 +22,7 @@
       * [IDN clusters with basic WHOIS information](data/clustered-idns-whois-20170501.csv)
     * [Manually classified homograph IDNs](data/manually-classified-idns-20170501.csv)
       * [Manually classified homograph IDNs statistics](data/stats-classified-domains.txt)
+    * [Clustered registrants with more than one homograph IDN](data/clustered-homograph-registrants-20170501.txt)
 * Source Code
   * [Initial raw data filtering](src/filter_domains.sh)
   * [Clustering of homograph IDNs](src/cluster_homographs.go)
