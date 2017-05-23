@@ -3,6 +3,7 @@
 #    filter      : filters raw data
 #    cluster     : clusters homograph IDNs
 #    whois       : retrieves homograph IDNs WHOIS information
+#    registrants : clusters registrants with more than one homograph IDN
 
 all: confusables filter cluster
 
@@ -17,3 +18,6 @@ cluster: cluster_homographs.go ../data/com-zone-idn-20170501.gz ../data/com-alex
 
 whois: whois_homographs.sh ../data/clustered-idns-20170501.csv
 	./whois_homographs.sh > ../data/clustered-idns-whois-20170501.csv
+
+registrants: cluster_registrants.py ../data/manually-classified-idns-20170501.csv
+	./cluster_registrants.py > ../data/clustered-homograph-registrants-20170501.csv

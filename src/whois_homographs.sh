@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Important: requires whois unix command
-# Important: requires clustered IDNs file, called clustered-idns-20170501.csv
+# Important: requires clustered IDNs file, called ../data/clustered-idns-20170501.csv
 if [ ! -f "../data/clustered-idns-20170501.csv" ]; then
   echo "Required file ../data/clustered-idns-20170501.csv not found"
   exit 1

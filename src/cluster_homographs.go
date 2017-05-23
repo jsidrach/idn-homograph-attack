@@ -1,4 +1,8 @@
 // Clusters the domain names according to their non-IDN homograph
+
+// Important: requires top domains file, called ../data/com-alexa-top-not-idn-20170501.gz
+// Important: requires idns file, called ../data/com-zone-idn-20170501.gz
+
 // Format of the standard output:
 // Rank,Canonical,Unicode,Punycode
 

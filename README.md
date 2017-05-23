@@ -1,7 +1,4 @@
 # Іntеrnɑtⅰonɑlⅰzеⅾ Dоmɑⅰn Nɑmе Hоmоɡrɑρh Attɑсκѕ
-## CSE 227: Computer Security
-### University of California San Diego
-#### Spring 2017
 
 ### Authors
 * [Chen Lai](https://github.com/claigit)
@@ -32,7 +29,7 @@
     * [Homoglyphs dictionary generator](src/homographs/generate_confusables.go)
     * [Homoglyphs dictionary](src/homographs/confusables_map.go)
   * [Retrieval of IDNs WHOIS information](src/whois_homographs.sh)
-  * TODO: Source code to generate graphs
+  * [Clustering of registrants with more than one homograph IDN](src/cluster_registrants.py)
 
 ### Commands
 * Generate PDFs
@@ -44,7 +41,7 @@
   * ``` make filter``` filters the raw data
   * ```make cluster``` clusters homograph IDNs
   * ```make whois``` retrieves homograph IDNs WHOIS information
-* TODO: Instructions to generate graphics, etc.
+  * ```make registrants``` clusters registrants with more than one homograph IDN
 
 ### Acknowledgements
 * [Louis DeKoven](http://ldekoven.com) and [Stefan Savage](https://cseweb.ucsd.edu/~savage/)  and for their help and guidance

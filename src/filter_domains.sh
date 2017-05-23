@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Important: requires .com zone snapshot by Verisign, called com-zone-20170501.gz
+# Important: requires .com zone snapshot by Verisign, called ../data/com-zone-20170501.gz
 if [ ! -f "../data/com-zone-20170501.gz" ]; then
   echo "Required file ../data/com-zone-20170501.gz not found"
   exit 1
