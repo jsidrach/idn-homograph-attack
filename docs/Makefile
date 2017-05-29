@@ -1,6 +1,6 @@
 # Targets:
 #    all     : pdf & clean (defalt option)
-#    pdfs    : compiles the proposal and paper to PDF files
+#    pdfs    : compiles the proposal, paper and presentation to PDF files
 #    clean   : removes the out/ directory holding temporary files
 
 ### Clean always
@@ -9,10 +9,11 @@
 ### Name of the text files used
 PROPOSAL = proposal
 PAPER = paper
+PRESENTATION = presentation
 
 all: pdfs clean
 
-pdfs: out/$(PROPOSAL).pdf out/$(PAPER).pdf
+pdfs: out/$(PROPOSAL).pdf out/$(PAPER).pdf out/$(PRESENTATION).pdf
 
 clean:
 	rm -rf out/
@@ -48,3 +49,10 @@ out/$(PAPER).bbl: $(BIB_FILES) | out/$(PAPER).aux
 out/$(PAPER).pdf: out/$(PAPER).aux $(if $(BIB_FILES), out/$(PAPER).bbl)
 	xelatex $(PDFLATEX_FLAGS) $(PAPER)
 	mv out/$(PAPER).pdf $(PAPER).pdf
+
+out/$(PRESENTATION).aux: $(TEX_FILES) $(IMG_FILES) | out/
+	xelatex $(PDFLATEX_FLAGS) $(PRESENTATION)
+
+out/$(PRESENTATION).pdf: out/$(PRESENTATION).aux
+	xelatex $(PDFLATEX_FLAGS) $(PRESENTATION)
+	mv out/$(PRESENTATION).pdf $(PRESENTATION).pdf
