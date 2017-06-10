@@ -34,11 +34,18 @@ TODO
 - Introduction to the problem
 - Enumeration of sections this paper talks about
 
+Domain names were originally designed to support only ASCII characters. The proposal of Internationalized Domain Name IDN) benefits non-English speaking people, however, it also presents the potential vulnerability. In this paper, we would analyze XXX top level .com domain
+by the means of clustering possible homograph domains and classify the owner of them.
+
 \section{Background}
 TODO
 - DNS: explanation
 - IDN: history, explanation
 - Browsers: display of IDNs, algorithms
+
+Domain name system contains the relationship between domain names with Internet Protocol(IP) address. It can can translate domain names to Internet Protocol(IP) address. At beginning, domain names support only ASCII characters. In 1996, Internationalized Domain Name (IDN) was proposed by Martin Drst for the purpose of letting non-English speaking people use Internet without additional restrictions. This extension involves representing Unicode characters in ASCII using Punycode, so that they could be then rendered back into their Unicode representation. Homograph letters (different letters whose representation is almost, if not, the same), however, present a potential vulnerability. For example, Cyrillic letter ’a’ can look identical to Latin letter ’a’ depending on the font. In other languages, like Chinese, there exists many homograph letters between traditional Chinese and simpli- fied Chinese. Malicious attackers can then register a domain where one of the letters is actually Cyrillic but whose representation matches a Latin one. Users could be linked to this newly registered malicious page, and they may not have any visual indication (at least without further interaction) that the page is not the one they think they are visiting.
+
+Currently, most popular website will show the hostname in Unicode depends on the language setting to defend IDN attack. For example, Chrome will display IDN in Unicode only if all characters of the domain names belong to only one language and this language has to be the user's preferred language.
 
 \section{Related Work}
 TODO
