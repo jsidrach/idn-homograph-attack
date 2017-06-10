@@ -7,7 +7,7 @@
 
 % Title
 \title{\Large
-\includegraphics[height=\baselineskip]{title}
+\includegraphics[height=\baselineskip]{title.png}
 \\ \vspace{0.65mm} \large \normalfont
 CSE 227: Computer Security - Spring 2017 \\ \textit{
 University of California San Diego
@@ -34,8 +34,9 @@ TODO
 - Introduction to the problem
 - Enumeration of sections this paper talks about
 
-Domain names were originally designed to support only ASCII characters. The proposal of Internationalized Domain Name IDN) benefits non-English speaking people, however, it also presents the potential vulnerability. In this paper, we would analyze XXX top level .com domain
-by the means of clustering possible homograph domains and classify the owner of them.
+Domain names were originally designed to support only ASCII characters.
+The proposal of Internationalized Domain Name IDN) benefits non-English speaking people, however, it also presents the potential vulnerability.
+In this paper, we would analyze XXX top level .com domain by the means of clustering possible homograph domains and classify the owner of them.
 
 \section{Background}
 TODO
@@ -43,13 +44,39 @@ TODO
 - IDN: history, explanation
 - Browsers: display of IDNs, algorithms
 
-Domain name system contains the relationship between domain names with Internet Protocol(IP) address. It can can translate domain names to Internet Protocol(IP) address. At beginning, domain names support only ASCII characters. In 1996, Internationalized Domain Name (IDN) was proposed by Martin Drst for the purpose of letting non-English speaking people use Internet without additional restrictions. This extension involves representing Unicode characters in ASCII using Punycode, so that they could be then rendered back into their Unicode representation. Homograph letters (different letters whose representation is almost, if not, the same), however, present a potential vulnerability. For example, Cyrillic letter ’a’ can look identical to Latin letter ’a’ depending on the font. In other languages, like Chinese, there exists many homograph letters between traditional Chinese and simpli- fied Chinese. Malicious attackers can then register a domain where one of the letters is actually Cyrillic but whose representation matches a Latin one. Users could be linked to this newly registered malicious page, and they may not have any visual indication (at least without further interaction) that the page is not the one they think they are visiting.
+Domain name system contains the relationship between domain names with Internet Protocol(IP) address.
+It can can translate domain names to Internet Protocol(IP) address.
+At beginning, domain names support only ASCII characters.
+In 1996, Internationalized Domain Name (IDN) was proposed by Martin Drst for the purpose of letting non-English speaking people use Internet without additional restrictions.
+This extension involves representing Unicode characters in ASCII using Punycode, so that they could be then rendered back into their Unicode representation.
+Homograph letters (different letters whose representation is almost, if not, the same), however, present a potential vulnerability.
+For example, Cyrillic letter ’a’ can look identical to Latin letter ’a’ depending on the font.
+In other languages, like Chinese, there exists many homograph letters between traditional Chinese and simplified Chinese.
+Malicious attackers can then register a domain where one of the letters is actually Cyrillic but whose representation matches a Latin one.
+Users could be linked to this newly registered malicious page, and they may not have any visual indication (at least without further interaction) that the page is not the one they think they are visiting.
 
-Currently, most popular website will show the hostname in Unicode depends on the language setting to defend IDN attack. For example, Chrome will display IDN in Unicode only if all characters of the domain names belong to only one language and this language has to be the user's preferred language.
+Currently, most popular website will show the hostname in Unicode depends on the language setting to defend IDN attack.
+For example, Chrome will display IDN in Unicode only if all characters of the domain names belong to only one language and this language has to be the user's preferred language.
 
 \section{Related Work}
 TODO
 - Brief analysis of previous papers on the same topic
+
+Many relevant studies have been conducted to show the vulnerability of IDN and provide possible solution to mitigate IDN homograph attack.
+In 2001, Evgeniy Gabrilovich and Alex Gontmakher has proved the feasibility of such attack based on the vulnerability of unicode in \textit{The Homograph Attack}~\cite{theHomoAttack}.
+In 2006, Vicktor Krammer proposed a defense mechanism based on address bar highlighting/indication technique and better UI of the browsers~\cite{phishdefenseKV}.
+His method of defense mainly target at regular users who do not neccessarily have relevant knowledge and through the better rendering of address along with explicit notification or alert on phishing url users would be aware of malicious website.
+Manurer and Höfer believed that safe guard based on browsers' blacklist is far from enough to protect users from sophisticated phishing attacks~\cite{proc-eds-2012}.
+They proposed an advanced method based on url components and spell checking functionality of search engine.
+In this method, an url would be divided into several components, namely, basename, subdomains, pathdomain, brandname.
+Each of this components will be sent to search engine as a term for spelling check and in the cases that spelling suggestion is returned the url will be counted as suspicious.
+The major browsers have their own IDN policies to defend against IDN homograph attack.
+Google Chrome, starting with Chrome 51, will display punycode if certain tests fail on the input url.
+These tests include but not limited to converting to unicode, less than one numbering systems involved, no invisible characters, etc.
+IE displays urls in IDN form if every component contains only characters from the languages configured in \textit{Internet Options}.
+Firefox uses a script mixing detection algorithm based on \textit{"Moderately Restrictive" profile of Unicode Technical Report 39} and displays unicode when url consists of any single script, any single script plus Latin, or it's in the whitelist of other combinations.
+Opera shows IDN only for whitelisted TLDs.
+Safari has a whitelist of scripts that do not contain confusable characters and only shows the IDN form for the whitelisted scripts.
 
 \section{Methodology}
 Our data collection involves two primary sources.
