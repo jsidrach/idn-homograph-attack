@@ -30,34 +30,11 @@ University of California San Diego
 \abstract{TODO}
 
 \section{Introduction}
-TODO
-- Introduction to the problem
-- Enumeration of sections this paper talks about
-
-Domain names were originally designed to support only ASCII characters.
-The proposal of Internationalized Domain Name IDN) benefits non-English speaking people, however, it also presents the potential vulnerability.
-
-In this paper, we would analyze XXX top level .com domain by means of clustering possible homograph domains and classifying the owner of them.
-In section 2, we talked about the background and history of Internationalized Domain Name (IDN) and the vulnerability behind it.
-In section 3, several relevant researches are briefly introduced, which provide a couple of possible solutions to address IDN homograph attack.
-We will also present the IDN policies of current major browsers in this section.
-Section 4 describes the methodology of data collection and analysis we adopt in this project.
-In the next section, we comment on different analysis results and explain the consequences of caveats.
-For the last section, we briefly explain the ethical considerations of the research.
-
-\section{Background}
-TODO
-- DNS: explanation
-- IDN: history, explanation
-- Browsers: display of IDNs, algorithms
-
-Domain name system contains the relationship between domain names with Internet Protocol(IP) address.
-It can can translate domain names to Internet Protocol(IP) address.
-At beginning, domain names support only ASCII characters.
-In 1996, Internationalized Domain Name (IDN) was proposed by Martin Drst for the purpose of letting non-English speaking people use Internet without additional restrictions.
+Domain names were originally designed to only support ASCII characters.
+Internationalized Domain Names (IDNs) were proposed back in December 1996 by Martin D\"{u}rst for the purpose of letting non-English speaking people use Internet without additional restrictions.
 This extension involves representing Unicode characters in ASCII using Punycode, so that they could be then rendered back into their Unicode representation.
 Homograph letters (different letters whose representation is almost, if not, the same), however, present a potential vulnerability.
-For example, Cyrillic letter ’a’ can look identical to Latin letter ’a’ depending on the font.
+For example, Cyrillic letter ``a'' can look identical to Latin letter ``a'' depending on the font.
 In other languages, like Chinese, there exists many homograph letters between traditional Chinese and simplified Chinese.
 Malicious attackers can then register a domain where one of the letters is actually Cyrillic but whose representation matches a Latin one.
 Users could be linked to this newly registered malicious page, and they may not have any visual indication (at least without further interaction) that the page is not the one they think they are visiting.
@@ -65,17 +42,44 @@ Users could be linked to this newly registered malicious page, and they may not 
 Currently, most popular browsers will show the hostname in Unicode depends on the language setting to defend IDN attack.
 For example, Google Chrome\footnote{\url{https://www.google.com/chrome}} will display IDN in Unicode only if all characters of the domain names belong to only one language and this language has to be the user's preferred language.
 
+In this paper, we analyze the impact of this attack.
+Section 2 explains past and present policies of major browsers and top level domain(TLD) registrants in an attempt to prevent the attack.
+Section 3 explores relevant work in the literature related to homograph attacks.
+Section 4 describes the methodology of data collection and analysis adopted in this project.
+Section 5 comments the different results obtained.
+Section 6 addresses the ethical concerns regarding the data collection.
+Section 7 presents the conclusions obtained from this project.
+
+\section{Background}
+TODO
+- Browsers policy
+- TLDs policy
+
+\subsection{Browsers Policy}
+The major browsers have their own IDN policies to defend against IDN homograph attack.
+Google Chrome, starting with Chrome 51, will display punycode if certain tests fail on the input url.
+These tests include but not limited to converting to unicode, less than one numbering systems involved, no invisible characters, etc.
+Internet Explorer\footnote{\url{https://support.microsoft.com/en-us/help/17621/internet-explorer-downloads}} displays urls in IDN form if every component contains only characters from the languages configured in \textit{Internet Options}.
+Firefox\footnote{\url{https://www.mozilla.org/en-US/firefox/new/}} uses a script mixing detection algorithm based on \textit{"Moderately Restrictive" profile of Unicode Technical Report 39} and displays unicode when url consists of any single script, any single script plus Latin, or it's in the whitelist of other combinations.
+Opera\footnote{\url{http://www.opera.com}} shows IDN only for whitelisted TLDs.
+Safari\footnote{\url{https://www.apple.com/safari}} has a whitelist of scripts that do not contain confusable characters and only shows the IDN form for the whitelisted scripts.
+
+\subsection{TLDs Policy}
+
 \section{Related Work}
 TODO
 - Brief analysis of previous papers on the same topic
 
 Many relevant studies have been conducted to show the vulnerability of IDN and provide possible solution to mitigate IDN homograph attack.
+
 In 2001, Evgeniy Gabrilovich and Alex Gontmakher has proved the feasibility of such attack based on the vulnerability of Unicode in \textit{The Homograph Attack}~\cite{theHomoAttack}.
+
 In 2006, Vicktor Krammer proposed a defense mechanism based on address bar highlighting/indication technique and better UI of the browsers~\cite{phishdefenseKV}.
 His method of defense mainly target at regular users who do not neccessarily have relevant knowledge and through the better rendering of address along with explicit notification or alert on phishing url users would be aware of malicious website.
 This method check each character in an url seperately, highlighting digits or characters of various scripts in different background color so that users will be aware of the difference.
 It also suggest using larger font size in the address bar to help distinguish possible homograph characters from the Latin letter and alerting users when multiscript is detected by means of scripts block\footnote{\url{http://www.unicode.org/reports/tr24/}}.
 His proposal was innovative in his year but not entirely accurate because characters from the same script may be in different blocks while characters from different scripts sometimes lie in the same block.
+
 Manurer and Höfer believed that safe guard based on browsers' blacklist is far from enough to protect users from sophisticated phishing attacks~\cite{proc-eds-2012}.
 They proposed an advanced method based on url components and spell checking functionality of search engine.
 In this method, an url would be divided into several subterms, namely, base name\footnote{The primary domain name as registered at the registrar}, subdomain\footnote{A part of the primary domain}, path domain\footnote{A subfolder of the url}, brand name\footnote{A brand name that occurs in a url}.
@@ -88,14 +92,8 @@ Their algorithm is based on the following characteristics on different subterms 
 \end{itemize}
 Each of this components will be sent to search engine as a term for spelling check and in the cases that spelling suggestion is returned the url will be counted as suspicious.
 By splitting a url into these subterms, this method cover almost all possible cases of fake url or domain name.
-However, this mechanism is based on the search engine for return spelling suggestion and as a result, it does not play well when it is used as sole detection.
-The major browsers have their own IDN policies to defend against IDN homograph attack.
-Google Chrome, starting with Chrome 51, will display punycode if certain tests fail on the input url.
-These tests include but not limited to converting to unicode, less than one numbering systems involved, no invisible characters, etc.
-Internet Explorer\footnote{\url{https://support.microsoft.com/en-us/help/17621/internet-explorer-downloads}} displays urls in IDN form if every component contains only characters from the languages configured in \textit{Internet Options}.
-Firefox\footnote{\url{https://www.mozilla.org/en-US/firefox/new/}} uses a script mixing detection algorithm based on \textit{"Moderately Restrictive" profile of Unicode Technical Report 39} and displays unicode when url consists of any single script, any single script plus Latin, or it's in the whitelist of other combinations.
-Opera\footnote{\url{http://www.opera.com}} shows IDN only for whitelisted TLDs.
-Safari\footnote{\url{https://www.apple.com/safari}} has a whitelist of scripts that do not contain confusable characters and only shows the IDN form for the whitelisted scripts.
+However, this mechanism is based on the search engine for return spelling suggestion and as a result, it does not perform well when it is used as sole detection.
+
 
 \section{Methodology}
 Our data collection involves two primary sources.
@@ -143,6 +141,7 @@ This could shed light on which registrant organizations are allowing homograph d
 \subsection{Manual Classification}
 The last part of the data processing was the classification of the homograph domain names.
 This classification was done manually, to be able to differentiate between scam and unrelated websites.
+To help with the classification and speed up the process, we queried the \textit{WHOIS} records~\footnote{\url{https://whois.icann.org}} of every homograph domain name.
 Some domains expired at the time of the classification, and were subsequently deleted from the output file.
 
 The two high level categories that were defined are \textit{Canonical} and \textit{Third Party}.
@@ -239,7 +238,7 @@ There are also several individuals with a high number of homograph international
 It is also worth mentioning that some of these individuals seem to be targeting specific industries.
 For instance, a single person has registered homographs of ``audi'', ``citroen'' and ``diesel''.
 
-\begin{table*}[!ht]
+\begin{table*}[ht!]
 \centering
 \begin{tabular}{llr}
 \hline
@@ -260,10 +259,10 @@ wuyu                                 & wy65535@126.com            & 7           
 \end{table*}
 
 \section{Ethical Considerations}
-TODO
-- Publicly available information
-- Delay between whois to not saturate server, also only in small subset (about 1k domains)
-- Brief explanation why this research is ethical
+The domain information used in this project is publicly available and was voluntarily provided by the registrants of the domains.
+The full \texttt{.com} domain zone snapshot won't be publicly disclosed, as its access requires a paid subscription.
+The retrieval of the \textit{WHOIS} information was performed only for the homograph internationalized domain names, which were about one thousand.
+It was done with a significant delay between petitions (3 seconds) in order to avoid saturating the server.
 
 \section{Conclusions}
 TODO
