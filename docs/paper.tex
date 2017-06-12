@@ -1,7 +1,6 @@
 \documentclass[letterpaper,twocolumn,10pt]{article}
-\usepackage{url,epsfig}
+\usepackage{url,epsfig,endnotes}
 \providecommand{\keywords}[1]{\textbf{\textit{Keywords:}} #1}
-
 
 \begin{document}
 
@@ -24,7 +23,7 @@ University of California San Diego
 {\rm Zhongrong Jian\footnotemark[\value{footnote}]}\\
 \normalfont{\texttt{zhjian@ucsd.edu}}
 \and
-{\rm J. Sidrach\footnotemark[\value{footnote}]}\\
+{\rm J. Sidrach\endnotemark[\value{endnote}]}\\
 \normalfont{\texttt{jsidrach@ucsd.edu}}
 }
 
@@ -38,7 +37,7 @@ The invention of Unicode made it possible for non-English speaking people to ent
 
 \section{Introduction}
 Domain names were originally designed to only support ASCII characters.
-Internationalized Domain Names (IDNs) were proposed back in December 1996 by Martin D\"{u}rst\footnote{\url{https://tools.ietf.org/html/draft-duerst-dns-i18n-00}} for the purpose of letting non-English speaking people use Internet without additional restrictions.
+Internationalized Domain Names (IDNs) were proposed back in December 1996 by Martin D\"{u}rst\endnote{\url{https://tools.ietf.org/html/draft-duerst-dns-i18n-00}} for the purpose of letting non-English speaking people use Internet without additional restrictions.
 This extension involves representing Unicode characters in ASCII using Punycode, so that they could be then rendered back into their Unicode representation.
 Homograph letters (different letters whose representation is almost, if not, the same), however, present a potential security vulnerability.
 For example, Cyrillic letter ``a'' can look identical to Latin letter ``a'' depending on the font.
@@ -60,7 +59,7 @@ TODO
 - TLDs policy
 
 Currently, most popular browsers will show the host name in Unicode depends on the language setting to defend IDN attack.
-For example, Google Chrome\footnote{\url{https://www.google.com/chrome}} will display IDN in Unicode only if all characters of the domain names belong to only one language and this language has to be the user's preferred language. \ref{screenshot} show the screenshots of the original URL of \url{www.google.com} and its homograph.
+For example, Google Chrome\endnote{\url{https://www.google.com/chrome}} will display IDN in Unicode only if all characters of the domain names belong to only one language and this language has to be the user's preferred language. \ref{screenshot} show the screenshots of the original URL of \url{www.google.com} and its homograph.
 
 \begin{figure}[t]
   \includegraphics[width=\linewidth]{google.png}
@@ -74,10 +73,10 @@ For example, Google Chrome\footnote{\url{https://www.google.com/chrome}} will di
 The major browsers have their own IDN policies to defend against IDN homograph attack.
 Google Chrome, starting with Chrome 51, will display Punycode if certain tests fail on the input URL.
 These tests include but not limited to converting to Unicode, less than one numbering systems involved, no invisible characters, etc.
-Internet Explorer\footnote{\url{https://support.microsoft.com/en-us/help/17621/internet-explorer-downloads}} displays URLs in IDN form if every component contains only characters from the languages configured in \textit{Internet Options}.
-Firefox\footnote{\url{https://www.mozilla.org/en-US/firefox/new/}} uses a script mixing detection algorithm based on \textit{"Moderately Restrictive" profile of Unicode Technical Report 39} and displays Unicode when URL consists of any single script, any single script plus Latin, or it's in the white-list of other combinations.
-Opera\footnote{\url{http://www.opera.com}} shows IDN only for whitelisted TLDs.
-Safari\footnote{\url{https://www.apple.com/safari}} has a whitelist of scripts that do not contain confusable characters and only shows the IDN form for the whitelisted scripts.
+Internet Explorer\endnote{\url{https://support.microsoft.com/en-us/help/17621/internet-explorer-downloads}} displays URLs in IDN form if every component contains only characters from the languages configured in \textit{Internet Options}.
+Firefox\endnote{\url{https://www.mozilla.org/en-US/firefox/new/}} uses a script mixing detection algorithm based on \textit{"Moderately Restrictive" profile of Unicode Technical Report 39} and displays Unicode when URL consists of any single script, any single script plus Latin, or it's in the white-list of other combinations.
+Opera\endnote{\url{http://www.opera.com}} shows IDN only for whitelisted TLDs.
+Safari\endnote{\url{https://www.apple.com/safari}} has a whitelist of scripts that do not contain confusable characters and only shows the IDN form for the whitelisted scripts.
 
 \subsection{TLDs Policy}
 
@@ -92,12 +91,12 @@ In 2001, Evgeniy Gabrilovich and Alex Gontmakher has proved the feasibility of s
 In 2006, Vicktor Krammer proposed a defense mechanism based on address bar highlighting/indication technique and better UI of the browsers~\cite{phishdefenseKV}.
 His method of defense mainly target at regular users who do not neccessarily have relevant knowledge and through the better rendering of address along with explicit notification or alert on phishing url users would be aware of malicious website.
 This method check each character in an URL separately, highlighting digits or characters of various scripts in different background color so that users will be aware of the difference.
-It also suggest using larger font size in the address bar to help distinguish possible homograph characters from the Latin letter and alerting users when multi-script is detected by means of scripts block\footnote{\url{http://www.unicode.org/reports/tr24/}}.
+It also suggest using larger font size in the address bar to help distinguish possible homograph characters from the Latin letter and alerting users when multi-script is detected by means of scripts block\endnote{\url{http://www.unicode.org/reports/tr24/}}.
 His proposal was innovative in his year but not entirely accurate because characters from the same script may be in different blocks while characters from different scripts sometimes lie in the same block.
 
 Manurer and Höfer believed that safe guard based on browsers' blacklist is far from enough to protect users from sophisticated phishing attacks~\cite{proc-eds-2012}.
 They proposed an advanced method based on url components and spell checking functionality of search engine.
-In this method, an url would be divided into several subterms, namely, base name\footnote{The primary domain name as registered at the registrar}, subdomain\footnote{A part of the primary domain}, path domain\footnote{A subfolder of the url}, brand name\footnote{A brand name that occurs in a url}.
+In this method, an url would be divided into several subterms, namely, base name\endnote{The primary domain name as registered at the registrar}, subdomain\endnote{A part of the primary domain}, path domain\endnote{A subfolder of the url}, brand name\endnote{A brand name that occurs in a url}.
 Their algorithm is based on the following characteristics on different subterms of url:
 \begin{itemize}
   \item Base name: Phisher cannot register the original domain but can only register mispelling or homograph domain name because the original one is often registered ahead by the company.
@@ -113,15 +112,15 @@ However, this mechanism is based on the search engine for return spelling sugges
 \section{Methodology}
 Our data collection involved two primary sources.
 The first one was a snapshot of the \texttt{.com} and \texttt{.net} domain zone, from now on referenced as \textit{.com snapshot}.
-This snapshot was provided by Verisign\footnote{\url{https://www.verisign.com/en_US/channel-resources/domain-registry-products/zone-file/index.xhtml}}, and it is dated on 2017/05/01.
+This snapshot was provided by Verisign\endnote{\url{https://www.verisign.com/en_US/channel-resources/domain-registry-products/zone-file/index.xhtml}}, and it is dated on 2017/05/01.
 It contains, for the most part, the name servers of all \texttt{.com} and \texttt{.net} domains.
 For the purposes of this project, only the \texttt{.com} domains were considered.
 
-The second data source was the \textit{Alexa Top 1 million sites ranking}\footnote{\url{https://www.alexa.com/topsites}}, from now on referenced as \textit{top domains snapshot}.
+The second data source was the \textit{Alexa Top 1 million sites ranking}\endnote{\url{https://www.alexa.com/topsites}}, from now on referenced as \textit{top domains snapshot}.
 It contains the most popular one million web sites (as ranked by Alexa), regardless whether they are \texttt{.com} domains or not.
 It was also retrieved on 2017/05/01.
 
-In an effort to help with the reproducibility and replicability of this project, the original data and processing code used in this project has been made available in a public repository\footnote{\url{https://github.com/jsidrach/idn-homograph-attack}}.
+In an effort to help with the reproducibility and replicability of this project, the original data and processing code used in this project has been made available in a public repository\endnote{\url{https://github.com/jsidrach/idn-homograph-attack}}.
 
 \subsection{Data Processing}
 We used the \textit{.com snapshot} to obtain all the internationalized domains of the \texttt{.com} domain zone.
@@ -142,7 +141,7 @@ The representative of each cluster is a homograph domain name from the \textit{t
 Only clusters with at least one internationalized homograph domain name were output.
 
 The detection of homograph domain names was done using an algorithm to check if two strings are confusable.
-This algorithm is described in the \textit{Unicode Technical Standard \#39}\footnote{\url{http://www.unicode.org/reports/tr39/#Confusable_Detection}}.
+This algorithm is described in the \textit{Unicode Technical Standard \#39}\endnote{\url{http://www.unicode.org/reports/tr39}}.
 The approach followed has some caveats, that could be addressed in future work.
 For instance, it does not detect a homograph of \texttt{www.google.com}, where the first ``.'' has been replaced by a similar looking Unicode character.
 More sophisticated homographs can also be generated by using Unicode characters similar to ``/''.
@@ -156,7 +155,7 @@ This could shed light on which registrant organizations are allowing homograph d
 \subsection{Manual Classification}
 The last part of the data processing was the classification of the homograph domain names.
 This classification was done manually, to be able to differentiate between scam and unrelated websites.
-To help with the classification and speed up the process, we queried the \textit{WHOIS} records\footnote{\url{https://whois.icann.org}} of every homograph domain name.
+To help with the classification and speed up the process, we queried the \textit{WHOIS} records\endnote{\url{https://whois.icann.org}} of every homograph domain name.
 Some domains had expired at the time of the classification, and were subsequently deleted from the output file.
 
 The two high level categories that were defined are \textit{Canonical} and \textit{Third Party}.
@@ -290,5 +289,7 @@ We would like to thank Louis DeKoven and Stefan Savage for their help and suppor
 
 {\footnotesize \bibliographystyle{acm}
 \bibliography{bibliography}}
+
+\theendnotes
 
 \end{document}
