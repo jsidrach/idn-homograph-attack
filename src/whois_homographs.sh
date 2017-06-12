@@ -18,5 +18,5 @@ while IFS="," read rank domain unicode punycode; do
     cdate="$(echo "$info" | grep -e "^Creation Date: " | cut -d " " -f 3-)"
     udate="$(echo "$info" | grep -e "^Updated Date: " | cut -d " " -f 3-)"
     printf "%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n" "$rank" "$domain" "$unicode" "$punycode" "$org" "$email" "$cdate" "$udate"
-    sleep 1s
+    sleep 3s
 done < "../data/clustered-idns-20170501.csv"
