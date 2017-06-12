@@ -40,7 +40,15 @@ Malicious attackers can then register a domain where one of the letters is actua
 Users could be linked to this newly registered malicious page, and they may not have any visual indication (at least without further interaction) that the page is not the one they think they are visiting.
 
 Currently, most popular browsers will show the hostname in Unicode depends on the language setting to defend IDN attack.
-For example, Google Chrome\footnote{\url{https://www.google.com/chrome}} will display IDN in Unicode only if all characters of the domain names belong to only one language and this language has to be the user's preferred language.
+For example, Google Chrome\footnote{\url{https://www.google.com/chrome}} will display IDN in Unicode only if all characters of the domain names belong to only one language and this language has to be the user's preferred language. \ref{screenshot} show the screenshots of the original url of \url{www.google.com} and its homograph.
+
+\begin{figure}[t]
+  \includegraphics[width=\linewidth]{google.png}
+  \includegraphics[width=\linewidth]{fakegoogle.png}
+  \centering
+  \caption{Google(top) and its homograph(bottom) on Chrome}
+  \label{screenshot}
+\end{figure}
 
 In this paper, we analyze the impact of this attack.
 Section 2 explains past and present policies of major browsers and top level domain(TLD) registrants in an attempt to prevent the attack.
