@@ -57,6 +57,9 @@ Section 7 presents the conclusions obtained from this project.
 TODO
 - Introduction to the section, two mayor players in preventing the attack, different roles: browsers vs TLDs
 
+This section provides some background knowledge for mechanism that defends against internationalized domain name homograph attack.
+There are two mayor players preventing the attack, the browsers and TLDs, with one working on the client side to detect and alert users while the other putting down policies on domain name registerar to restrict the number of possible homographs.
+
 \subsection{Browsers}
 TODO
 - Rewrite, browser by browser: chrome, firefox, edge, safari
@@ -79,9 +82,13 @@ For example, Google Chrome\endnote{\url{https://www.google.com/chrome}} will dis
 The major browsers have their own IDN policies to defend against IDN homograph attack.
 Google Chrome, starting with Chrome 51, will display Punycode if certain tests fail on the input URL.
 These tests include but not limited to converting to Unicode, less than one numbering systems involved, no invisible characters, etc.
+
 Internet Explorer\endnote{\url{https://support.microsoft.com/en-us/help/17621/internet-explorer-downloads}} displays URLs in IDN form if every component contains only characters from the languages configured in \textit{Internet Options}.
+
 Firefox\endnote{\url{https://www.mozilla.org/en-US/firefox/new/}} uses a script mixing detection algorithm based on \textit{"Moderately Restrictive" profile of Unicode Technical Report 39} and displays Unicode when URL consists of any single script, any single script plus Latin, or it's in the white-list of other combinations.
+
 Opera\endnote{\url{http://www.opera.com}} shows IDN only for whitelisted TLDs.
+
 Safari\endnote{\url{https://www.apple.com/safari}} has a whitelist of scripts that do not contain confusable characters and only shows the IDN form for the whitelisted scripts.
 
 \subsection{Top-Level Domains}
