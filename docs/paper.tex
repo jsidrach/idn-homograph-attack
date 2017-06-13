@@ -72,22 +72,24 @@ Currently, most popular browsers will show the host name in Unicode depends on t
 For example, Google Chrome\endnote{\url{https://www.google.com/chrome}} will display IDN in Unicode only if all characters of the domain names belong to only one language and this language has to be the user's preferred language. \ref{screenshot} show the screenshots of the original URL of \url{www.google.com} and its homograph.
 
 \begin{figure}[t]
-  \includegraphics[width=\linewidth]{images/google}
-  \includegraphics[width=\linewidth]{images/fakegoogle-punycode}
+  \includegraphics[width=\linewidth]{images/apple}
+  \includegraphics[width=\linewidth]{images/fakeapple-punycode}
   \centering
-  \caption{Google(top) and its homograph(bottom) on Chrome}
+  \caption{Apple official website(top) and its homograph(bottom) on Chrome}
   \label{screenshot}
 \end{figure}
 
 The major browsers have their own IDN policies to defend against IDN homograph attack.
-Google Chrome, starting with Chrome 51, will display Punycode if certain tests fail on the input URL.
+
+Google Chrome, starting with Chrome 51, used to display Punycode if certain tests fail on the input URL.
 These tests include but not limited to converting to Unicode, less than one numbering systems involved, no invisible characters, etc.
+However, Chrome displayed IDNs that consist purely of cyrillic characters normally, which allow IDN homograph attack of this kind.
+Starting from version 59, Chrome checks cryl-latin alikes characters only for non-IDN TLDs and block a label made entirely of Latin-look-alike Cryllic letters for non-IDN TLDs.
 
-Internet Explorer\endnote{\url{https://support.microsoft.com/en-us/help/17621/internet-explorer-downloads}} displays URLs in IDN form if every component contains only characters from the languages configured in \textit{Internet Options}.
+Firefox\endnote{\url{https://www.mozilla.org/en-US/firefox/new/}} used to adopt a long whitelist and only display as Unicode all IDN labels within TLDs on it. Currently, the browser uses a script mixing detection algorithm based on \textit{"Moderately Restrictive" profile of Unicode Technical Report 39} and displays Unicode when URL consists of any single script, any single script plus Latin, or it's in the white-list of other combinations.
+As for domain names made entirely of Cryllic letters, Firefox leave this issue to registries to make sure that their customers cannot rip each other off\footnote{\url{https://wiki.mozilla.org/IDN_Display_Algorithm}}.
 
-Firefox\endnote{\url{https://www.mozilla.org/en-US/firefox/new/}} uses a script mixing detection algorithm based on \textit{"Moderately Restrictive" profile of Unicode Technical Report 39} and displays Unicode when URL consists of any single script, any single script plus Latin, or it's in the white-list of other combinations.
-
-Opera\endnote{\url{http://www.opera.com}} shows IDN only for whitelisted TLDs.
+Internet Explorer\endnote{\url{https://support.microsoft.com/en-us/help/17621/internet-explorer-downloads}} displays URLs in IDN form if every component contains only characters from the languages configured in \textit{Internet Options}. %Edge should probably do the same
 
 Safari\endnote{\url{https://www.apple.com/safari}} has a whitelist of scripts that do not contain confusable characters and only shows the IDN form for the whitelisted scripts.
 
