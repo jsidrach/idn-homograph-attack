@@ -69,7 +69,7 @@ TODO
 - Cut screenshots better
 
 Currently, most popular browsers will show the host name in Unicode depends on the language setting to defend IDN attack.
-For example, Google Chrome\endnote{\url{https://www.google.com/chrome}} will display IDN in Unicode only if all characters of the domain names belong to only one language and this language has to be the user's preferred language. \ref{screenshot} show the screenshots of the original URL of \url{www.google.com} and its homograph.
+For example, Google Chrome\endnote{\url{https://www.google.com/chrome}} will display IDN in Unicode only if all characters of the domain names belong to only one language and this language has to be the user's preferred language. Figure \ref{screenshot} shows the screenshots of the original URL of \url{www.google.com} and its homograph.
 
 \begin{figure}[t]
   \includegraphics[width=\linewidth]{images/apple}
@@ -97,6 +97,12 @@ Safari\endnote{\url{https://www.apple.com/safari}} has a whitelist of scripts th
 TODO
 - What does different TLDs do
 - ccTLDs
+
+The Internet Corporation for Assigned Names and Numbers(ICANN) is responsible for the management of domain name system. In 2009, ICANN started to accept the application for internationalized country code top-level domain(IDN ccTLD) for the benefits of non-English speaking people and the first IDN ccTLD was added to DNS root zone in 2010\ref{tld1}.
+
+ICANN is aware of the potential vulnerability of homograph attacks and limits the usage of letter that is similar to Latin. For any application of potential IDN ccTLD, if there exists letter that is similar to an existing TLD, ICANN may reject them, especially for two-letter TLD. Three-letter TLD have higher chance to be accepted, as they are considered to be safer than two-letter TLD. ICANN listed detailed checking process in the Final Implementation Plan\ref{icann}.
+
+For the second level domains, some registrant registers similar IDNs for brand protection, like Google. Google has registered most IDN in 2005.
 
 \section{Related Work}
 Several relevant studies have been conducted to describe the potential security issues with internationalized domain names, while providing possible solutions to mitigate the surface attack of these homograph domain names. The first of these studies, \textit{The Homograph Attack}~\cite{gabrilovich2002}, was written by Evgeniy Gabrilovich and Alex Gontmakher in 2001, and proved the feasability of the attack.
