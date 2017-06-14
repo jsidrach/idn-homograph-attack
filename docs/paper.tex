@@ -33,7 +33,7 @@ University of California San Diego
 The introduction of Internationalized Domain Names (IDNs) made access the web easier to non-English speakers.
 However, it also opened up the possibility of using homograph domain names maliciously, in what has been called IDN homograph attacks.
 This kind of attack can be used to trick users into thinking they are visiting a different (but homograph) domain name.
-Our approach to analyze its potential impact is based on clustering IDNs with their canonical counterparts in the Alexa Top 1 million web sites ranking.
+Our approach to analyze its potential impact is based on clustering IDNs with their canonical counterparts in the Alexa Top 1 million websites ranking.
 The results obtained indicate that there are more than a thousand IDN homographs among \textit{.com} domains.
 While most of them are not being used actively, they still possess a potential security risk as there are no guarantees they will remain inactive in the future.
 }
@@ -59,7 +59,7 @@ Section 6 addresses the ethical concerns regarding the data collection.
 Section 7 presents the conclusions obtained from this project.
 
 \section{Background}
-This section summarizes different mechanisms used to defend against internationalized domain name homograph attack.
+This section summarizes different mechanisms used to defend against IDN homograph attacks.
 There are two major players trying to prevent this kind of attack, browsers and TLDs.
 Browsers, on the client side, display the non-Unicode version of the domain name based on different white-lists and restrictions.
 TLDs, on the other side, have different policies on domain name registrations to try to restrict the use of homographs.
@@ -87,7 +87,7 @@ The specific conditions, however, are different for each browser.
 Figure~\ref{screenshot-apple} shows a successful attack where the homograph domain name is not detected.
 Figure~\ref{screenshot-google} show an unsuccessful attack, where the URL is displayed in Punycode.
 
-Firefox (version 54) uses a mixed script detection algorithm based on the ``Moderately Restrictive'' profile defined in the \textit{Unicode Technical Standard \#39}\endnote{\url{http://www.unicode.org/reports/tr39}}.
+Firefox (version 54) uses a mixed script detection algorithm based on the ``Moderately Restrictive'' profile defined in the \textit{Unicode Technical Standard \#39}\endnote{\label{tr39}\url{http://www.unicode.org/reports/tr39}}.
 It displays the URL in Unicode when all characters belong to a single script, to a single script plus Latin, or to a white-list of other combinations.
 Google Chrome (version 59) performs several checks, including the search of Latin-look-alike Cyrillic characters in non-IDN TLDs.
 The check mentioned was introduced recently, after a proof-of-concept IDN homograph attack working on Chrome was submitted to their issue tracker\endnote{\url{https://bugs.chromium.org/p/chromium/issues/detail?id=683314}}.
@@ -127,13 +127,13 @@ For instance, the base name of the URL is displayed in a darker color in Google 
 Safari goes a step further and only shows the base name of the URL.
 
 Other attempts to analyze the impact of homograph attacks have also been made.
-In 2009, Peter Hanay and Christopher Bolan~\cite{hannay2009} concluded that, while most modern browsers in fact have implemented useful measures to prevent internationalized domain name homograph attacks, email clients where not nearly as effective, specially when dealing with incoming emails.
+In 2009, Peter Hanay and Christopher Bolan~\cite{hannay2009} concluded that, while most modern browsers in fact have implemented useful measures to prevent IDN homograph attacks, email clients were not nearly as effective, specially when dealing with incoming emails.
 In 2010, Johnny Al Helou and Scott Tilley~\cite{al2010} argued that the introduction of ccTLDs have made this attack easier to perform again.
 
 Our approach to analyze the potential security risk of homograph IDNs is fundamentally different from the ones evaluated.
 Rather than inspecting traffic or generating random homograph permutations of a string, we take a more systematic approach.
 We cluster all internationalized homograph domains using a snapshot of the \texttt{.com} domain zone.
-We then use a list of top web sites and domain registrants data to classify each homograph domain name.
+We then use a list of top websites and domain registrants data to classify each homograph domain name.
 
 \section{Methodology}
 Our data collection involves two primary sources.
@@ -143,7 +143,7 @@ It contains, for the most part, the name servers of all \texttt{.com} and \textt
 For the purposes of this project, only the \texttt{.com} domains have been considered.
 
 The second data source is the \textit{Alexa Top 1 million sites ranking}\endnote{\url{https://www.alexa.com/topsites}}, from now on referenced as \textit{top domains snapshot}.
-It contains the most popular one million web sites (as ranked by Alexa), regardless whether they are \texttt{.com} domains or not.
+It contains the most popular one million websites (as ranked by Alexa), regardless whether they are \texttt{.com} domains or not.
 It was also retrieved on 2017/05/01.
 
 In an effort to help with the reproducibility and replicability of this project, the original data and processing code used in this project has been made available in a public repository\endnote{\url{https://github.com/jsidrach/idn-homograph-attack}}.
@@ -153,21 +153,21 @@ We use the \textit{.com snapshot} to obtain all the internationalized domains of
 All IDNs are represented using Punycode, so they start with the \texttt{xn--} prefix.
 Using this information we first filter the \textit{.com snapshot} to match only the \texttt{.com} domains that start with \texttt{xn--}.
 Since the \textit{.com snapshot} contains name server records, a single domain may have more than one entry in the file.
-Only the domain name is relevant for this project, so the rest of the columns of the \textit{.com snapshot} can be discarded.
+Only the domain name is relevant to this project, so the rest of the columns of the \textit{.com snapshot} can be discarded.
 We sort the domains in lexicographical order, removing duplicates in the process.
 
-We use the \textit{top domains snapshot} as a source for the canonical (non-international) domain name of a website, based on its ranking.
+We use the \textit{top domains snapshot} as a source for the canonical (non-international) domain name of a website.
 As we are only interested in non-IDNs, we can discard the ones that start with the prefix \texttt{xn--}.
 We also remove sub-domains, since we only have second level domain names in the \textit{.com snapshot}.
 
 \subsection{Clustering}
 The underlying assumptions behind the clustering process are that homograph attacks are more likely to target popular domains, and that the million domains from the \textit{top domains snapshot} contains most of the popular domains.
-To detect potential internationalized domain name homograph attacks, we cluster the IDNs in the \textit{.com snapshot}.
+To detect potential IDN homograph attacks, we cluster the IDNs in the \textit{.com snapshot}.
 The representative of each cluster is a homograph domain name from the \textit{top domains snapshot}, which we call canonical domain name.
 Only clusters with at least one internationalized homograph domain name are output.
 
 The detection of homograph domain names is done using an algorithm to check if two strings are confusable.
-This algorithm is described in the \textit{Unicode Technical Standard \#39}.
+This algorithm is described in the \textit{Unicode Technical Standard \#39}\footnotemark[\ref{tr39}].
 The approach followed has some caveats, that could be addressed in future work.
 For instance, it does not detect a homograph of \texttt{www.google.com}, where the first ``.'' has been replaced by a similar looking Unicode character.
 More sophisticated homographs can also be generated by using Unicode characters similar to ``/''.
@@ -175,7 +175,7 @@ It is also worth noting that only domain names from the \texttt{.com} zone are c
 All things considered, we still think this approach is a valuable first step.
 
 Another type of clustering is also performed.
-We group the homograph domain names by its registrant organization, and rank each organization by the number of homograph domain names to their name.
+We group the homograph domain names by its registrant organization, and rank each organization by the number of homograph domain names they have registered.
 This could shed light on which registrant organizations are allowing homograph domain names, or even on which individuals and companies are doing it the most.
 
 \begin{table*}[b!]
@@ -196,7 +196,7 @@ Domains                                           & \#                         &
 
 \subsection{Manual Classification}
 The last part of the data processing is the classification of the homograph domain names.
-This classification is done manually, to be able to differentiate between scam and unrelated websites.
+This classification is done manually, to differentiate between scam and unrelated websites.
 To help with the classification and speed up the process, we query the \textit{WHOIS} records\endnote{\url{https://whois.icann.org}} of every homograph domain name.
 Some domains are expired at the time of the classification, and are subsequently deleted from the output file.
 
@@ -281,9 +281,9 @@ wuyu                                 & wy65535@126.com            & 7           
 \label{top-registrants-homograph-idns}
 \end{table*}
 
-Table~\ref{top-com-alexa-with-idns} shows the number of internationalized domain name homographs for the top ten \texttt{.com} domains.
+Table~\ref{top-com-alexa-with-idns} shows the number of IDN homographs for the top ten \texttt{.com} domains.
 It is worth noting that most of the homograph domains of \textit{google.com} are actually registered by Google, possibly as a defensive measure.
-Another surprising result of the homograph clustering is that 81.87\% of the groups have just one homograph internationalized domain name.
+Another surprising result of the homograph clustering is that 81.87\% of the groups have just one homograph IDN.
 This suggests that this kind of attack may not be targeted only to top websites, but rather to any domain where valuable information could be scammed from users.
 
 The manual classification sheds some light on how these homograph IDNs are currently being used.
