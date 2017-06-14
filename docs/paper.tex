@@ -34,7 +34,7 @@ The introduction of Internationalized Domain Names (IDNs) made access the web ea
 However, it also opened up the possibility of using homograph domain names maliciously, in what has been called IDN homograph attacks.
 This kind of attack can be used to trick users into thinking they are visiting a different (but homograph) domain name.
 Our approach to analyze its potential impact was based on clustering IDNs with their canonical counterparts in the Alexa Top 1m web sites ranking.
-The results obtained indicate that there are more than a thousand (at least) IDN homographs among \textit{.com} domains.
+The results obtained indicate that there are more than a thousand IDN homographs among \textit{.com} domains.
 While most of them are not being used actively, they still possess a potential security risk as there are no guarantees they will remain inactive in the future.
 }
 
@@ -87,18 +87,18 @@ The specific conditions, however, are different for each browser.
 Figure~\ref{screenshot-apple} shows a successful attack where the homograph domain name was not detected.
 Figure~\ref{screenshot-google} show an unsuccessful attack, where the URL is displayed in Punycode.
 
-Firefox (version 54 at the time of writing) uses a script mixing detection algorithm based on the ``Moderately Restrictive'' profile defined in the \textit{Unicode Technical Standard \#39}\endnote{\url{http://www.unicode.org/reports/tr39}}.
-It displays the URL in Unicode when all characters belong to a single script, to a single script plus Latin, or to a the white-list of other combinations.
-Google Chrome (version 59 at the time of writing), among other things, checks Latin-look-alike Cyrillic characters in non-IDN TLDs.
-This change was introduced recently, after a proof-of-concept IDN homograph attack working on Chrome was submitted to their issue tracker\endnote{\url{https://bugs.chromium.org/p/chromium/issues/detail?id=683314}}.
-Internet Explorer and Edge (version 11 and 40 at the of writing, respectively) display the URL in Unicode if every component of the URL contains only characters from the languages configured in the operating system's \textit{Internet Options}.
-Safari (version 10 at the time of writing) has a white-list of scripts that do not contain confusable characters, and only shows the URL in Unicode for those white-listed scripts.
+Firefox (version 54) uses a mixed script detection algorithm based on the ``Moderately Restrictive'' profile defined in the \textit{Unicode Technical Standard \#39}\endnote{\url{http://www.unicode.org/reports/tr39}}.
+It displays the URL in Unicode when all characters belong to a single script, to a single script plus Latin, or to a white-list of other combinations.
+Google Chrome (version 59) performs several checks, including the search of Latin-look-alike Cyrillic characters in non-IDN TLDs.
+The check mentioned was introduced recently, after a proof-of-concept IDN homograph attack working on Chrome was submitted to their issue tracker\endnote{\url{https://bugs.chromium.org/p/chromium/issues/detail?id=683314}}.
+Internet Explorer and Edge (version 11 and 40) display the URL in Unicode if every component of the URL contains only characters from the languages configured in the operating system's \textit{Internet Options}.
+Safari (version 10) has a white-list of scripts that do not contain confusable characters, and only shows the URL in Unicode for those scripts in the white-list.
 
 \subsection{ICANN and TLD Registrars}
 The Internet Corporation for Assigned Names and Numbers (ICANN) is the organization responsible for the management of domain name system.
 In 2009, ICANN started to accept applications for internationalized country code top-level domains (IDN ccTLDs).
 The first IDN ccTLD was added to DNS root zone in 2010~\cite{mac2010}.
-ICANN is aware of the potential security risk that homograph attacks pose, and limits the usage of Latin-look-alike letters.
+ICANN is aware of the potential security risk that homograph attacks pose, and limits the use of Latin-look-alike letters.
 They may reject applications for IDN ccTLDs if there already exists a TLD that looks similar to the one being petitioned for.
 The detailed checking process is defined in their ``Final Implementation Plan for IDN ccTLD Fast Track Process''~\cite{icann2013}.
 
@@ -107,7 +107,7 @@ Only a few have implemented restrictions to eliminate this potential risk.
 For instance, \texttt{.cn}, \texttt{.biz}, \texttt{.hk}, and all Chinese TLDs will simultaneously activate both traditional and simplified Chinese IDNs once one of them is registered.
 
 \section{Related Work}
-Several relevant studies have been conducted to describe the potential security issues with IDNs, while providing possible solutions to mitigate the surface attack of these homograph domain names. The first of these studies, \textit{The Homograph Attack}~\cite{gabrilovich2002}, was written by Evgeniy Gabrilovich and Alex Gontmakher in 2001, and proved the feasability of the attack.
+Several relevant studies have been conducted to describe the potential security issues with IDNs, while providing possible solutions to mitigate the surface attack of these homograph domain names. The first study, \textit{The Homograph Attack}, was written by Evgeniy Gabrilovich and Alex Gontmakher in 2001, and proved the feasability of the attack~\cite{gabrilovich2002}.
 
 In 2006, Vicktor Krammer proposed a defense mechanism based on address bar highlighting on the browsers and a better user interface~\cite{krammer2006}.
 This method of defense mainly targets regular users, by making them explicitly aware of the URL differences.
@@ -118,9 +118,9 @@ In 2012, Maurer and H\"{o}fer argued that safe-guards based on browsers' blackli
 They proposed a more complex method based on URL components and the spell checking functionality of any search engine.
 In this method, a URL is be divided into several parts, namely, base name (the primary domain name as registered at the registrar), sub-domain (part before the primary domain, i.e., before the last identifier and TLD), path domain (sub-folder of the URL), and brand name (any popular brand name that is present in the URL).
 Their algorithm tries to prevent the attack by analyzing each of these URL parts.
-Each one is sent to the search engine for a spelling check, and in the cases that a spelling suggestion is returned, the URL will be marked as suspicious.
+Each one is sent to the search engine for a spell check, and in the cases that a spelling suggestion is returned, the URL will be marked as suspicious.
 By splitting the URL into these parts, this method aims to cover almost all possible cases of confusable URLs or domain names.
-However, this mechanism relies exclusively on the search engine to return spelling suggestions, and as a result, it is highly dependent on the search engine and query itself.
+However, this mechanism relies exclusively on the search engine to return spelling suggestions, resulting in its highly dependence on the search engine and query itself.
 
 While these last two methods were not adopted, they have influenced other possible mitigations currently implemented in most modern browsers.
 For instance, the base name of the URL is displayed in a darker color in Google Chrome and Mozilla Firefox.
