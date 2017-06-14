@@ -99,10 +99,10 @@ The Internet Corporation for Assigned Names and Numbers (ICANN) is the organizat
 In 2009, ICANN started to accept applications for internationalized country code top-level domains (IDN ccTLDs).
 The first IDN ccTLD was added to DNS root zone in 2010~\cite{mac2010}.
 ICANN is aware of the potential security risk that homograph attacks pose, and limits the usage of Latin-look-alike letters.
-They may reject applications for IDN ccTLDs if there exists an existing TLD that looks similar to the one being petitioned for.
+They may reject applications for IDN ccTLDs if there already exists a TLD that looks similar to the one being petitioned for.
 The detailed checking process is defined in their ``Final Implementation Plan for IDN ccTLD Fast Track Process''~\cite{icann2013}.
 
-Most second level registrars do not have a explicit public policy to prevent the registration of homograph domains.
+Most second level registrars do not have an explicit public policy to prevent the registration of homograph domains.
 Only a few have implemented restrictions to eliminate this potential risk.
 For instance, \texttt{.cn}, \texttt{.biz}, \texttt{.hk}, and all Chinese TLDs will simultaneously activate both traditional and simplified Chinese IDNs once one of them is registered.
 
@@ -186,7 +186,7 @@ Domains                                           & \#                         &
 \itshape\sffamily{Canonical domain names}         & \itshape\sffamily{458731}  & \itshape\sffamily{8.31\%}  \\
 \hspace{0.5cm} With IDN homographs                & 825                        & 6.04\%                     \\
 \hspace{0.5cm} Without IDN homographs             & 457906                     & 2.27\%                     \\
-\itshape\sffamily{IDNs} & \itshape\sffamily{1045400} & \itshape\sffamily{91.69\%} \\
+\itshape\sffamily{Internationalized Domain Names} & \itshape\sffamily{1045400} & \itshape\sffamily{91.69\%} \\
 \hspace{0.5cm} With canonical homograph           & 1099                       & 3.68\%                     \\
 \hspace{0.5cm} Without canonical homograph        & 1044301                    & 2.74\%                     \\ \hline
 \end{tabular}
@@ -306,11 +306,17 @@ The retrieval of the \textit{WHOIS} information was performed only for the homog
 It was performed with a significant delay between petitions (3 seconds) in order to avoid saturating the servers.
 
 \section{Conclusions}
-TODO
-- Conclusions of our work
-- Possible future work
-- TLDs
-- Hard to balance (rendering idn useless vs preventing the attack)
+We provide a systematic method to evaluate the potential threat that IDN homographs present.
+Our data shows that there are more than a thousand IDN homographs in the \textit{.com} zone.
+Even if the vast majority these are parking domains, there are no guarantees that they will remain inactive in the future.
+Surprisingly, most TLDs do not have common policies to prevent the registration of homograph domains.
+
+It is also important to remember that while the easiest solution would be displaying always URLs in Punycode instead of Unicode, that would completely defeat the purpose of IDNs.
+Browsers have to balance user experience and security.
+They need to allow users to type, navigate and see domains in their language of choice; while at the same time they should avoid misleading users into thinking they are in a legitimate domain when they are not.
+
+Regarding future work, the next logical steps would be to repeat this analysis in other TLDs, and to improve the homograph matching algorithm.
+A more challenging enchancement would be to perform the classification of homograph IDNs without manual intervention by analyzing \textit{WHOIS} records and the \textit{HTTP/HTML} responses.
 
 \section*{Acknowledgments}
 We would like to thank Louis DeKoven and Stefan Savage for their help and support throughout this project.
