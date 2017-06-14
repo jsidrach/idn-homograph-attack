@@ -85,7 +85,7 @@ A more comprehensive study would be required for other possible attack vectors, 
 All major browsers display the URL in Punycode instead of Unicode if certain conditions are met, to defend the user against a possible IDN homograph attack.
 The specific criteria, however, is different for each browser.
 Figure~\ref{screenshot-apple} shows a successful attack where the homograph domain name is not detected.
-Figure~\ref{screenshot-google} show an unsuccessful attack, where the URL is displayed in Punycode.
+Figure~\ref{screenshot-google} shows an unsuccessful attack, where the URL is displayed in Punycode.
 
 Firefox (version 54) uses a mixed script detection algorithm based on the ``Moderately Restrictive'' profile defined in the \textit{Unicode Technical Standard \#39}\endnote{\label{tr39}\url{http://www.unicode.org/reports/tr39}}.
 It displays the URL in Unicode when all characters belong to a single script, to a single script plus Latin, or to a white-list of other combinations.
