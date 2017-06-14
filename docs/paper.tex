@@ -96,9 +96,14 @@ TODO
 - What does different TLDs do
 - ccTLDs
 
-The Internet Corporation for Assigned Names and Numbers(ICANN) is responsible for the management of domain name system. In 2009, ICANN started to accept the application for internationalized country code top-level domain(IDN ccTLD) for the benefits of non-English speaking people and the first IDN ccTLD was added to DNS root zone in 2010\ref{tld1}.
+The Internet Corporation for Assigned Names and Numbers(ICANN) is an organization responsible for the management of domain name system. In 2009, ICANN started to accept the application for internationalized country code top-level domain(IDN ccTLD) for the benefits of non-English speaking people and the first IDN ccTLD was added to DNS root zone in 2010\ref{tld1}.
 
 ICANN is aware of the potential vulnerability of homograph attacks and limits the usage of letter that is similar to Latin. For any application of potential IDN ccTLD, if there exists letter that is similar to an existing TLD, ICANN may reject them, especially for two-letter TLD. Three-letter TLD have higher chance to be accepted, as they are considered to be safer than two-letter TLD. ICANN listed detailed checking process in the Final Implementation Plan\ref{icann}.
+
+Although the vulnerability of homograph has been introduced as early as 2001, most registrant of TLD don't have the policy to defend homograph attack. Only several TLD have published policy to eliminate the potential risk of specific language. For example, .cn .biz, .hk, and all Chinese TLD will activate both traditional Chinese domain and simplified Chinese domain once one of it is registered. Registering with characters in both traditional Chinese and simplified Chinese is not allowed.
+
+- TODO it was found in wiki, but i didn't find source document.
+(In .org domain, once one letter is used in the domain, other homograph letters corresponding to the same domain will be prohibited.)
 
 For the second level domains, some registrant registers similar IDNs for brand protection, like Google. Google has registered most IDN in 2005.
 
