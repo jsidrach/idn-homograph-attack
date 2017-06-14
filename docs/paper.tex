@@ -1,5 +1,5 @@
 \documentclass[letterpaper,twocolumn,10pt]{article}
-\usepackage{url,epsfig,endnotes}
+\usepackage{usenix,url,epsfig,endnotes}
 \providecommand{\keywords}[1]{\textbf{\textit{Keywords:}} #1}
 
 \begin{document}
@@ -17,27 +17,32 @@ University of California San Diego
 
 % Authors
 \author{
-{\rm Chen Lai\footnote{Author names are ordered lexicographically, by last name.}}\\
+{\rm Chen Lai\thanks{Author names are ordered lexicographically, by last name.}}\\
 \normalfont{\texttt{chl588@ucsd.edu}}
 \and
-{\rm Zhongrong Jian\footnotemark[\value{footnote}]}\\
+{\rm Zhongrong Jian\footnotemark[1]}\\
 \normalfont{\texttt{zhjian@ucsd.edu}}
 \and
-{\rm J. Sidrach\footnotemark[\value{footnote}]}\\
+{\rm J. Sidrach\footnotemark[1]}\\
 \normalfont{\texttt{jsidrach@ucsd.edu}}
 }
 
 \maketitle
 
 \abstract{
-The invention of Unicode made it possible for non-English speaking people to enter the world of Internet. However, it also open up the possibilities of malicious use of URL. Sometimes different letters from different languages can look almost the same depending on the font. This paper mainly summarize the previous relevant work and analyze the current circumstance of Internationalized Domain Name Homograph Attack on the Internet via statistical approach on the websites from Alexa top 1 million rankings. Through the analysis results we will be able to provide some insight on this subject.
+The introduction of Internationalized Domain Names made access the web easier to non-English speakers.
+However, it also opened the possibility of using homograph domain names maliciously.
+We analyzed the potential impact of this type of attack, commonly referred to as IDN homograph attack.
+Our approach was based on clustering internationalized domain names with their counterparts in the Alexa Top 1m web sites ranking.
+The results obtained indicate that there are more than a thousand (at least) IDN homographs among \textit{.com} domains.
+Most of them are not being used actively, but they still posses a potential security risk as there are no guarantees they will remain inactive in the future.
 }
 
 \keywords{Internationalized Domain Names, Homograph Attack, Phishing, Unicode, Punycode, Browser, Computer Security.}
 
 \section{Introduction}
 Domain names were originally designed to only support ASCII characters.
-Internationalized Domain Names (IDNs) were proposed back in December 1996 by Martin D\"{u}rst\endnote{\url{https://tools.ietf.org/html/draft-duerst-dns-i18n-00}} for the purpose of letting non-English speaking people use Internet without additional restrictions.
+Internationalized Domain Names (IDNs) were proposed back in December 1996 by Martin D\"{u}rst\endnote{\url{https://tools.ietf.org/html/draft-duerst-dns-i18n-00}} for the purpose of letting non-English speakers use Internet without additional restrictions.
 This extension involves representing Unicode characters in ASCII using Punycode, so that they could be then rendered back into their Unicode representation.
 Homograph letters (different letters whose representation is almost, if not, the same), however, present a potential security vulnerability.
 For example, Cyrillic letter ``a'' can look identical to Latin letter ``a'' depending on the font.
@@ -45,7 +50,7 @@ In other languages, like Chinese, there exists many homograph letters between tr
 Malicious attackers could then register a domain where one of the letters is actually Cyrillic but whose representation matched a Latin one.
 Users could be linked to this newly registered malicious page, and they may not have any visual indication (at least without further interaction) that the page is not the one they think they are visiting.
 
-In this paper, we analyze the potential impact of this type of attack, commonly referred to as IDN Homograph Attack.
+In this paper, we analyze the potential impact of this type of attack, commonly referred to as IDN homograph attack.
 Section 2 explains past and present policies of major browsers and top-level domain (TLD) registrants in an attempt to prevent the attack.
 Section 3 explores relevant work in the literature related to homograph attacks.
 Section 4 describes the methodology of data collection and analysis adopted in this project.
@@ -54,44 +59,40 @@ Section 6 addresses the ethical concerns regarding the data collection.
 Section 7 presents the conclusions obtained from this project.
 
 \section{Background}
-TODO
-- Introduction to the section, two mayor players in preventing the attack, different roles: browsers vs TLDs
-
-This section provides some background knowledge for mechanism that defends against internationalized domain name homograph attack.
-There are two mayor players preventing the attack, the browsers and TLDs, with one working on the client side to detect and alert users while the other putting down policies on domain name registerar to restrict the number of possible homographs.
+This section summarizes different mechanisms used to defend against internationalized domain name homograph attack.
+There are two mayor players trying to prevent this kind of attack, browsers and TLDs.
+Browsers, on the client side, display the non-Unicode version of the domain name based on different white-lists and restrictions.
+TLDs, on the other side, have different policies on domain name registrations to try to restrict the use of homographs.
+A more comprehensive study would be required for other possible attack vectors, such as email clients.
 
 \subsection{Browsers}
-TODO
-- Rewrite, browser by browser: chrome, firefox, edge, safari
-- Significant changes in the past years?
-- Not updated browsers/embedded browsers?
-- Screenshot of two actual domains that look the same but are different
-- Cut screenshots better
-
-Currently, most popular browsers will show the host name in Unicode depends on the language setting to defend IDN attack.
-For example, Google Chrome\endnote{\url{https://www.google.com/chrome}} will display IDN in Unicode only if all characters of the domain names belong to only one language and this language has to be the user's preferred language. Figure \ref{screenshot} shows the screenshots of the original URL of \url{www.google.com} and its homograph.
-
 \begin{figure}[t]
   \includegraphics[width=\linewidth]{images/apple}
   \includegraphics[width=\linewidth]{images/fakeapple-punycode}
   \centering
-  \caption{Apple official website(top) and its homograph(bottom) on Chrome}
-  \label{screenshot}
+  \caption{Apple's official website (top) and its IDN homograph (bottom), as displayed on Chrome 55.}
+  \label{screenshot-apple}
 \end{figure}
 
-The major browsers have their own IDN policies to defend against IDN homograph attack.
+\begin{figure}[t]
+  \includegraphics[width=\linewidth]{images/google}
+  \includegraphics[width=\linewidth]{images/fakegoogle-punycode}
+  \centering
+  \caption{Google's official website (top) and its IDN homograph (bottom), as displayed on Chrome 55.}
+  \label{screenshot-google}
+\end{figure}
 
-Google Chrome, starting with Chrome 51, used to display Punycode if certain tests fail on the input URL.
-These tests include but not limited to converting to Unicode, less than one numbering systems involved, no invisible characters, etc.
-However, Chrome displayed IDNs that consist purely of cyrillic characters normally, which allow IDN homograph attack of this kind.
-Starting from version 59, Chrome checks cryl-latin alikes characters only for non-IDN TLDs and block a label made entirely of Latin-look-alike Cryllic letters for non-IDN TLDs.
+All major browsers display the URL in Punycode instead of Unicode if certain conditions are met, to defend the user against a possible IDN homograph attack.
+The specific conditions, however, are different for each browser.
+Figure~\ref{screenshot-apple} shows a successful attack where the homograph domain name was not detected.
+Figure~\ref{screenshot-google} show an unsuccessful attack, where the URL is displayed in Punycode.
 
-Firefox\endnote{\url{https://www.mozilla.org/en-US/firefox/new/}} used to adopt a long whitelist and only display as Unicode all IDN labels within TLDs on it. Currently, the browser uses a script mixing detection algorithm based on \textit{"Moderately Restrictive" profile of Unicode Technical Report 39} and displays Unicode when URL consists of any single script, any single script plus Latin, or it's in the white-list of other combinations.
-As for domain names made entirely of Cryllic letters, Firefox leave this issue to registries to make sure that their customers cannot rip each other off\footnote{\url{https://wiki.mozilla.org/IDN_Display_Algorithm}}.
-
-Internet Explorer\endnote{\url{https://support.microsoft.com/en-us/help/17621/internet-explorer-downloads}} displays URLs in IDN form if every component contains only characters from the languages configured in \textit{Internet Options}. %Edge should probably do the same
-
-Safari\endnote{\url{https://www.apple.com/safari}} has a whitelist of scripts that do not contain confusable characters and only shows the IDN form for the whitelisted scripts.
+Firefox (version 54 at the time of writing) uses a script mixing detection algorithm based on the ``Moderately Restrictive'' profile defined in the \textit{Unicode Technical Standard \#39}\endnote{\url{http://www.unicode.org/reports/tr39}}.
+It displays the URL in Unicode when all characters belong to a single script, to a single script plus Latin, or to a the white-list of other combinations.
+Google Chrome (version 59 at the time of writing), among other things, checks Latin-look-alike Cyrillic characters in non-IDN TLDs.
+This change was introduced recently, after a proof-of-concept IDN homograph attack working on Chrome was submitted to their issue tracker\endnote{\url{https://bugs.chromium.org/p/chromium/issues/detail?id=683314}}.
+Internet Explorer and Edge (version 11 and 40 at the of writing, respectively) display the URL in Unicode if every component of the URL contains only characters from the languages configured in the operating system's \textit{Internet Options}.
+Safari (version 10 at the time of writing) has a white-list of scripts that do not contain confusable characters, and only shows the URL in Unicode for those white-listed scripts.
 
 \subsection{Top-Level Domains}
 TODO
@@ -165,7 +166,7 @@ The representative of each cluster is a homograph domain name from the \textit{t
 Only clusters with at least one internationalized homograph domain name were output.
 
 The detection of homograph domain names was done using an algorithm to check if two strings are confusable.
-This algorithm is described in the \textit{Unicode Technical Standard \#39}\endnote{\url{http://www.unicode.org/reports/tr39}}.
+This algorithm is described in the \textit{Unicode Technical Standard \#39}.
 The approach followed has some caveats, that could be addressed in future work.
 For instance, it does not detect a homograph of \texttt{www.google.com}, where the first ``.'' has been replaced by a similar looking Unicode character.
 More sophisticated homographs can also be generated by using Unicode characters similar to ``/''.
@@ -198,9 +199,9 @@ Additionally, a more detailed classification was made:
 \item \textit{Third Party - Scam}: domain resolved, and the website displayed was a clear attempt (similar color, logos, etc.) to make users think they were visiting the canonical homograph domain name.
 }
 
-\section{Results}
+% TODO: Align tables
 
-\begin{table*}[ht!]
+\begin{table*}[]
 \centering
 \begin{tabular}{lrr}
 \hline
@@ -216,18 +217,7 @@ Domains                                           & \#                         &
 \label{clustering-results}
 \end{table*}
 
-We obtained 458731 domain names from the \textit{top domains snapshot} that belonged to the \texttt{.com} zone.
-From the \textit{.com snapshot}, we identified a total of 1044301 internationalized domains.
-However, only a low percentage of the internationalized domain names (3.68\%) had a matching homograph canonical domain name in the \textit{top domains snapshot}.
-Even if we take into account that our homograph detection algorithm is rather limited (as described before), these results still indicate that the majority of internationalized domain names are not being used in homograph attacks.
-An overview of these clustering results can be found in Table~\ref{clustering-results}.
-
-Table~\ref{top-com-alexa-with-idns} shows the number of internationalized domain name homographs for the top ten \texttt{.com} domains.
-It is worth noting that most of the homograph domains of \textit{google.com} are actually registered by Google, possibly as a defensive measure.
-Another surprising result of the homograph clustering is that 81.87\% of the groups have just one homograph internationalized domain name.
-This suggests that this kind of attack may not be targeted only to top websites, but rather to any domain where valuable information could be obtained from the users by a scam.
-
-\begin{table}[ht!]
+\begin{table}[]
 \centering
 \begin{tabular}{lr}
 \hline
@@ -247,13 +237,7 @@ vk.com       & 6                    \\ \hline
 \label{top-com-alexa-with-idns}
 \end{table}
 
-The manual classification sheds some light on how these homograph internationalized domain names are currently being used.
-For the most part (82.34\%), the domains are registered by a third party, and not being used actively (parking).
-One possible explanation for this is that the domain was bought in an attempt to be re-sold later at a higher price to the owner of the matching canonical homograph domain.
-However, the potential security risk is still present as there are no guarantees that the parked domains will remain inactive in the future.
-A detailed breakdown of this classification can be found in Table~\ref{manually-classified-idns}.
-
-\begin{table}[ht!]
+\begin{table}[]
 \centering
 \begin{tabular}{lrr}
 \hline
@@ -271,13 +255,7 @@ Status                               & \#                     & \%              
 \label{manually-classified-idns}
 \end{table}
 
-Table~\ref{top-registrants-homograph-idns} contains the top ten registrants with the most homograph internationalized domain names.
-Most of these registrants are actually domain privacy companies, so it is impossible to know if the domains belong to the same person or not.
-There are also several individuals with a high number of homograph internationalized domain names.
-It is also worth mentioning that some of these individuals seem to be targeting specific industries.
-For instance, a single person has registered homographs of ``audi'', ``citroen'' and ``diesel''.
-
-\begin{table*}[ht!]
+\begin{table*}[]
 \centering
 \begin{tabular}{llr}
 \hline
@@ -296,6 +274,32 @@ wuyu                                 & wy65535@126.com            & 7           
 \caption{Top ten registrants with the most homograph IDNs.}
 \label{top-registrants-homograph-idns}
 \end{table*}
+
+\section{Results}
+
+We obtained 458731 domain names from the \textit{top domains snapshot} that belonged to the \texttt{.com} zone.
+From the \textit{.com snapshot}, we identified a total of 1044301 internationalized domains.
+However, only a low percentage of the internationalized domain names (3.68\%) had a matching homograph canonical domain name in the \textit{top domains snapshot}.
+Even if we take into account that our homograph detection algorithm is rather limited (as described before), these results still indicate that the majority of internationalized domain names are not being used in homograph attacks.
+An overview of these clustering results can be found in Table~\ref{clustering-results}.
+
+Table~\ref{top-com-alexa-with-idns} shows the number of internationalized domain name homographs for the top ten \texttt{.com} domains.
+It is worth noting that most of the homograph domains of \textit{google.com} are actually registered by Google, possibly as a defensive measure.
+Another surprising result of the homograph clustering is that 81.87\% of the groups have just one homograph internationalized domain name.
+This suggests that this kind of attack may not be targeted only to top websites, but rather to any domain where valuable information could be obtained from the users by a scam.
+
+The manual classification sheds some light on how these homograph internationalized domain names are currently being used.
+For the most part (82.34\%), the domains are registered by a third party, and not being used actively (parking).
+One possible explanation for this is that the domain was bought in an attempt to be re-sold later at a higher price to the owner of the matching canonical homograph domain.
+However, the potential security risk is still present as there are no guarantees that the parked domains will remain inactive in the future.
+A detailed breakdown of this classification can be found in Table~\ref{manually-classified-idns}.
+
+
+Table~\ref{top-registrants-homograph-idns} contains the top ten registrants with the most homograph internationalized domain names.
+Most of these registrants are actually domain privacy companies, so it is impossible to know if the domains belong to the same person or not.
+There are also several individuals with a high number of homograph internationalized domain names.
+It is also worth mentioning that some of these individuals seem to be targeting specific industries.
+For instance, a single person has registered homographs of ``audi'', ``citroen'' and ``diesel''.
 
 \section{Ethical Considerations}
 The domain information used in this project is publicly available, and was voluntarily provided by the registrants of the domains when they registered them.
