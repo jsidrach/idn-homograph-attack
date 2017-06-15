@@ -1,4 +1,4 @@
-# Іntеrnɑtⅰonɑlⅰzеⅾ Dоmɑⅰn Nɑmе Hоmоɡrɑρh Attɑсκѕ
+# Іntеrnɑtⅰonɑlⅰzеⅾ Dоmɑⅰn Nɑmе Hоmоɡrɑρh Attɑсκ
 
 ### Authors
 * [Chen Lai](https://github.com/claigit)
