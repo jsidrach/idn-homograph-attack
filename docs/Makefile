@@ -1,7 +1,10 @@
 # Targets:
-#    all     : pdf & clean (defalt option)
-#    pdfs    : compiles the proposal, paper and presentation to PDF files
-#    clean   : removes the out/ directory holding temporary files
+#    all          : pdf & clean (defalt option)
+#    pdfs         : compiles the proposal, paper and presentation to PDF files
+#    proposal     : compiles the proposal to PDF
+#    paper        : compiles the paper to PDF
+#    presentation : compiles the presentation to PDF
+#    clean        : removes the out/ directory holding temporary files
 
 ### Clean always
 .PHONY: clean
@@ -13,7 +16,13 @@ PRESENTATION = presentation
 
 all: pdfs clean
 
-pdfs: out/$(PROPOSAL).pdf out/$(PAPER).pdf out/$(PRESENTATION).pdf
+pdfs: proposal paper presentation
+
+proposal: out/$(PROPOSAL).pdf
+
+paper: out/$(PAPER).pdf
+
+presentation: out/$(PRESENTATION).pdf
 
 clean:
 	rm -rf out/
