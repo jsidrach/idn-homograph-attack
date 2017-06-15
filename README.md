@@ -1,5 +1,7 @@
 # Іntеrnɑtⅰonɑlⅰzеⅾ Dоmɑⅰn Nɑmе Hоmоɡrɑρh Attɑсκ
 
+Analysis of the potential impact of IDN homograph attacks
+
 ### Authors
 * [Chen Lai](https://github.com/claigit)
 * [Zhongrong Jian](https://github.com/miaolegewang)
