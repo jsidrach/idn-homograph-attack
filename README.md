@@ -1,6 +1,6 @@
 # Іntеrnɑtⅰonɑlⅰzеⅾ Dоmɑⅰn Nɑmе Hоmоɡrɑρh Attɑсκ
 
-Analysis of the potential impact of IDN homograph attacks
+Analysis of the potential impact of Internationalized Domain Name Homograph Attacks
 
 ### Authors
 * [Chen Lai](https://github.com/claigit)
